@@ -9,7 +9,7 @@ import './assets/fonts/fonts.css';
 function VidBackground(){
   return(
     <div className="top-0 absolute left-0 w-full h-screen overflow-hidden z-0">
-    <video className="w-full h-full object-cover" autoPlay muted loop preload="auto" playsinline poster={bgVidPoster}>
+    <video className="w-full h-full object-cover opacity-50" autoPlay muted loop preload="auto" playsinline poster={bgVidPoster}>
       <source src={bgVid} type="video/mp4" />
       <source src={bgVidFallback} type="video/webm" />
     </video>
