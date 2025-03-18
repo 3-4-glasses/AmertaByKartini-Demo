@@ -1,38 +1,101 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { FaRegUser, FaRegCheckCircle } from 'react-icons/fa';
+import { MdOutlinePayment } from 'react-icons/md';
+import { RiVerifiedBadgeLine } from 'react-icons/ri';
+import { BiImageAdd } from 'react-icons/bi';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const steps = [
+    {
+      number: '01.',
+      title: 'Send inspiration',
+      icon: <BiImageAdd size={28} />,
+      description: 'Choose decoration or send photos of decoration to us!',
+    },
+    {
+      number: '02.',
+      title: 'Partial payment',
+      icon: <MdOutlinePayment size={28} />,
+      description: '50% DP to secure a slot.',
+    },
+    {
+      number: '03.',
+      title: 'Discuss',
+      icon: <FaRegUser size={28} />,
+      description: 'Add any concepts and design with our specialist.',
+    },
+    {
+      number: '04.',
+      title: 'Final design',
+      icon: <FaRegCheckCircle size={28} />,
+      description: 'Design will be completed with color proof.',
+    },
+    {
+      number: '05.',
+      title: 'Approval',
+      icon: <RiVerifiedBadgeLine size={28} />,
+      description: 'Decoration will be worked on according to the design on the specified day.',
+    },
+    {
+      number: '06.',
+      title: 'Final payment',
+      icon: <MdOutlinePayment size={28} />,
+      description: 'Work will be declared as finished and no further changes will be made.',
+    },
+  ];
 
   return (
     <>
-      <p className="size-100 text-lime-400">
-        TEST
-      </p>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="min-h-screen bg-[#f8f7f3] flex flex-col items-center justify-center px-4 py-10">
+        <section className="w-full max-w-7xl">
+          <div className="grid md:grid-cols-3 gap-10">
+
+            {/* Left Column */}
+            <div className="flex flex-col justify-between relative">
+              <div>
+                <h2 className="text-gray-800 text-xl font-semibold">How to Order</h2>
+                <h1 className="text-2xl font-bold text-[#77815C] mb-10">Step-by-step</h1>
+              </div>
+
+              <div className="mt-10">
+                <p className="text-sm text-gray-500 mb-4">
+                  For more details on payment please read below:
+                </p>
+                <button className="bg-[#E8E3D8] text-gray-800 px-4 py-2 rounded-full text-sm shadow">
+                  Terms and Conditions
+                </button>
+              </div>
+            </div>
+
+            {/* Steps Column */}
+            <div className="md:col-span-2 flex flex-col justify-center">
+              <div className="grid md:grid-cols-2 gap-8">
+                {steps.map((step, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col items-start p-4 bg-white rounded-xl shadow space-y-4"
+                  >
+                    {/* Step Number on Top */}
+                    <span className="text-lg font-bold text-gray-800">{step.number}</span>
+
+                    {/* Title and Icon, icon close to title */}
+                    <div className="flex items-center">
+                      <h3 className="font-bold text-gray-800">{step.title}</h3>
+                      <div className="text-[#4B4B4B] ml-2">{step.icon}</div>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-sm text-gray-600">{step.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </section>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
