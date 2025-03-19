@@ -3,7 +3,7 @@ import { FaRegUser, FaRegCheckCircle } from 'react-icons/fa';
 import { MdOutlinePayment } from 'react-icons/md';
 import { RiVerifiedBadgeLine } from 'react-icons/ri';
 import { BiImageAdd } from 'react-icons/bi';
-import flowerImg from './assets/flower1.jpg';
+import flowerImg from './assets/flower.jpg';
 
 <img src={flowerImg} alt="Flower Decoration" className="w-64 h-auto" />
 
@@ -53,15 +53,17 @@ function OrderSteps() {
         <section className="w-full max-w-7xl">
           <div className="grid md:grid-cols-3 gap-10">
             <div className="flex flex-col justify-between relative">
-            <img src="/images/flower.png" alt="Flower Decoration" className="absolute top-0 left-0 w-64 h-auto opacity-20 -z-10"/>
               <div>
                 <h2 className="text-gray-800 text-xl font-semibold">How to Order</h2>
                 <h1 className="text-2xl font-bold text-[#77815C] mb-10">Step-by-step</h1>
+                <img src={flowerImg} alt="Flower Decoration" className="top-0 left-0 w-64 brightness-100 h-auto opacity-20"/>
               </div>
 
-              <div className="mt-10">
-                <p className="text-sm text-gray-500 mb-4 ">
-                  For more details on payment please read below:
+              <div className="mt-10 ">
+                <p className="text-lg text-center md:text-left lg:ml-25  text-gray-500 mb-4 leading-relaxed">
+                  For more details on <br/> 
+                  payment please <br/>
+                  read below: 
                 </p>
                 <button className="bg-[#E9DCC9]! text-black px-4 py-2 rounded-full text-sm shadow">
                   Terms and Conditions
