@@ -1,10 +1,10 @@
-import './App.css';
+import './OrderSteps.css';
 import { FaRegUser, FaRegCheckCircle } from 'react-icons/fa';
 import { MdOutlinePayment } from 'react-icons/md';
 import { RiVerifiedBadgeLine } from 'react-icons/ri';
 import { BiImageAdd } from 'react-icons/bi';
 
-function App() {
+function OrderSteps() {
   const steps = [
     {
       number: '01.',
@@ -49,8 +49,6 @@ function App() {
       <div className="min-h-screen bg-[#f8f7f3] flex flex-col items-center justify-center px-4 py-10">
         <section className="w-full max-w-7xl">
           <div className="grid md:grid-cols-3 gap-10">
-
-            {/* Left Column */}
             <div className="flex flex-col justify-between relative">
               <div>
                 <h2 className="text-gray-800 text-xl font-semibold">How to Order</h2>
@@ -58,39 +56,32 @@ function App() {
               </div>
 
               <div className="mt-10">
-                <p className="text-sm text-gray-500 mb-4">
+                <p className="text-sm text-gray-500 mb-4 ">
                   For more details on payment please read below:
                 </p>
-                <button className="bg-[#E8E3D8] text-gray-800 px-4 py-2 rounded-full text-sm shadow">
+                <button className="bg-[#E9DCC9]! text-black px-4 py-2 rounded-full text-sm shadow">
                   Terms and Conditions
                 </button>
               </div>
             </div>
 
-            {/* Steps Column */}
             <div className="md:col-span-2 flex flex-col justify-center">
               <div className="grid md:grid-cols-2 gap-8">
                 {steps.map((step, index) => (
                   <div
                     key={index}
-                    className="flex flex-col items-start p-4 bg-white rounded-xl shadow space-y-4"
+                    className="flex flex-col items-start p-4 bg-[#f8f7f3] rounded-xl shadow space-y-1"
                   >
-                    {/* Step Number on Top */}
                     <span className="text-lg font-bold text-gray-800">{step.number}</span>
-
-                    {/* Title and Icon, icon close to title */}
                     <div className="flex items-center">
                       <h3 className="font-bold text-gray-800">{step.title}</h3>
                       <div className="text-[#4B4B4B] ml-2">{step.icon}</div>
                     </div>
-
-                    {/* Description */}
                     <p className="text-sm text-gray-600">{step.description}</p>
                   </div>
                 ))}
               </div>
             </div>
-
           </div>
         </section>
       </div>
@@ -98,4 +89,4 @@ function App() {
   );
 }
 
-export default App;
+export default OrderSteps;
