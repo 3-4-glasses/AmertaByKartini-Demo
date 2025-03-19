@@ -3,6 +3,9 @@ import { FaRegUser, FaRegCheckCircle } from 'react-icons/fa';
 import { MdOutlinePayment } from 'react-icons/md';
 import { RiVerifiedBadgeLine } from 'react-icons/ri';
 import { BiImageAdd } from 'react-icons/bi';
+import flowerImg from './assets/flower1.jpg';
+
+<img src={flowerImg} alt="Flower Decoration" className="w-64 h-auto" />
 
 function OrderSteps() {
   const steps = [
@@ -50,6 +53,7 @@ function OrderSteps() {
         <section className="w-full max-w-7xl">
           <div className="grid md:grid-cols-3 gap-10">
             <div className="flex flex-col justify-between relative">
+            <img src="/images/flower.png" alt="Flower Decoration" className="absolute top-0 left-0 w-64 h-auto opacity-20 -z-10"/>
               <div>
                 <h2 className="text-gray-800 text-xl font-semibold">How to Order</h2>
                 <h1 className="text-2xl font-bold text-[#77815C] mb-10">Step-by-step</h1>
