@@ -99,7 +99,7 @@ function OrderSteps() {
     {
       number: '01.',
       title: 'Send inspiration',
-      icon: <BiImageAdd size={28} />,
+      icon: <BiImageAdd size={32} />,
       description: 'Choose decoration or send photos of decoration to us!',
     },
     {
@@ -139,7 +139,7 @@ function OrderSteps() {
       <div className="min-h-screen bg-[#f8f7f3] flex flex-col items-start justify-center px-4 py-10">
         <section className="w-full max-w-8xl">
           <div className="grid md:grid-cols-3 gap-30">
-            <div className="flex flex-col justify-between items-center relative order-last md:order-first w-full max-w-xl">
+            <div className="flex flex-col justify-between items-center relative w-full max-w-xl">
               <div>
                 <h2 className="text-gray-800 text-4xl font-extrabold playfair-display px-10">How to Order</h2>
                 <h1 className="text-5xl font-bold text-[#77815C] mb-10 px-10">Step-by-step</h1>
@@ -158,8 +158,8 @@ function OrderSteps() {
                 </button>
               </div>
             </div>
-
-            <div className="md:col-span-2 flex flex-col justify-center order-first md:order-last">
+       
+            <div className="md:col-span-2 flex flex-col justify-center">
               <div className="grid md:grid-cols-2 gap-8">
                 {steps.map((step, index) => (
                   <div
@@ -168,7 +168,7 @@ function OrderSteps() {
                   >
                     <span className="text-lg font-bold text-gray-800">{step.number}</span>
                     <div className="flex items-center">
-                      <h3 className="font-bold text-gray-800">{step.title}</h3>
+                      <h3 className="font-bold text-gray-800 text-xl">{step.title}</h3>
                       <div className="text-[#4B4B4B] ml-2">{step.icon}</div>
                     </div>
                     <p className="text-sm text-gray-600">{step.description}</p>
