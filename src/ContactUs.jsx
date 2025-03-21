@@ -19,7 +19,7 @@ function ContactUs() {
     }
 
     return (
-        <>
+        <div id="contact-us">
             <style>
                 {`
                 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
@@ -77,7 +77,7 @@ function ContactUs() {
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     );
 }
 
