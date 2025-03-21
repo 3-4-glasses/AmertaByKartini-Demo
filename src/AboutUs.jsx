@@ -5,7 +5,6 @@ import bgVidPoster from './assets/bg-vid.jpg';
 import './AboutUs.css';
 import './assets/fonts/fonts.css';
 
-
 function VidBackground(){
   return(
     <div className="top-0 absolute left-0 w-full h-screen overflow-hidden z-0">
