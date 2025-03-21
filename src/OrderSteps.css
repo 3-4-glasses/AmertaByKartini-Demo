@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+.playfair-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.lato {
+  font-family: 'Lato', sans-serif;
+}
