@@ -26,7 +26,7 @@ function ContactUs() {
                 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
                 `}
             </style>
-            <section className="h-auto w-full flex flex-col items-center justify-center bg-[#BCD0DB] pb-6 overflow-hidden px-4">
+            <section className="w-full flex flex-col items-center justify-center bg-[#BCD0DB] pb-6 overflow-hidden px-4">
                 <h2 className="mt-6 mb-5 text-3xl md:text-4xl text-[#302F2B] text-center" style={{ fontFamily: 'Playfair Display, serif' }}>Contact us!</h2>
 
                 {/* Main row container - aligns the main elements */}

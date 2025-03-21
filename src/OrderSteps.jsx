@@ -135,7 +135,6 @@ function OrderSteps() {
   ];
 
   return (
-    <>
       <div className="min-h-screen bg-[#f8f7f3] flex flex-col items-start justify-center px-4 py-10">
         <section className="w-full max-w-8xl">
           <div className="grid md:grid-cols-3 gap-30">
@@ -179,7 +178,6 @@ function OrderSteps() {
           </div>
         </section>
       </div>
-    </>
   );
 }
 
