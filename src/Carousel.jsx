@@ -80,7 +80,7 @@ function Carousel() {
     }, [current, direction, numSlides]);
      
     return (
-        <div className="relative w-full max-h-screen h-screen max-h-screen overflow-hidden">
+        <div className="fixed top-0 left-0 -z-100 w-full max-h-screen h-screen max-h-screen overflow-hidden">
             <div className="absolute inset-0 w-full h-full">
 
                 {/* Carousel */}
