@@ -10,7 +10,7 @@ import Carousel from "./Carousel.jsx"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <div className="scroll-container overflow-y-auto h-screen">
+    <div className="scroll-container scroll-mt-[200vh] overflow-y-auto h-screen">
       <Header/>
       <Carousel/>
       <AboutUs/> 

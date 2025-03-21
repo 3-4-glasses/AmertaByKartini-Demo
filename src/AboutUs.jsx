@@ -42,7 +42,7 @@ function ServiceDesc(){
 
 function AboutUs() {
   return (
-      <div className="snap-start h-screen overflow-x-hidden relative bg-white">
+    <div className="snap-start h-screen overflow-x-hidden relative bg-white">
         <VidBackground/>
         <div className="h-screen flex justify-center items-center relative z-10 text-center lg:text-left px-4 py-8 sm:px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] w-full max-w-screen-xl">
