@@ -1,19 +1,22 @@
 import React from 'react';
+import logo from './assets/logo_amerta_by_kartini.png';
 
 function Header() {
   return (
     <header className="fixed top-0 left-0 w-full z-50">
         <div className="backdrop-blur-md bg-white/20">
-            <div className="container mx-auto px-6 sm:px-8 py-4 flex items-center justify-between">
+            <div className="container mx-auto px-6 sm:px-8 -py-2 flex items-center justify-between">
                 {/* Logo */}
                 <div className="flex items-center">
-                    <div className="w-10 h-10 rounded-lg flex items-center justify-center">
-                        <span className="text-lg font-bold text-[#302F2B]">LOGO</span>
+                    <div className="w-25 h-25 rounded-lg flex items-center justify-center">
+                        <span className="text-lg font-bold text-[#302F2B]">
+                            <img src={logo}/>
+                        </span>
                     </div>
                 </div>
                 {/* Instagram icon and contact us button */}
                 <div className="flex items-center space-x-4 sm:space-x-6">
-                    <a href="#"> 
+                    <a href="https://www.instagram.com/amertabykartini/"> 
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5 sm:h-6 sm:w-6"
@@ -27,7 +30,7 @@ function Header() {
                     href="#contact-us"
                     className="text-[#302F2B] hover:text-gray-900 transition-colors duration-300"
                     >
-                    <button className="px-4 sm:px-6 py-2 bg-transparent border border-[#302F2B] rounded-full text-gray-700 hover:bg-opacity-100 hover:shadow-sm transition-all duration-300">
+                    <button className="px-4 sm:px-6 py-2 bg-transparent hover:bg-white/50 border border-[#302F2B] lato rounded-full text-gray-700 cursor-pointer transition-all duration-300 ">
                         Contact Us
                     </button>
                     </a>

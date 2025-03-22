@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import anniversaryPic from './assets/anniversaryImg.jpg'
+import bridalImg from './assets/bridalshower.jpg';
+import birthdayPic from './assets/birthdayImg.png'; 
+
 
 function Carousel() {
     const slides = [
         {
-            image: "https://images.pexels.com/photos/2749481/pexels-photo-2749481.jpeg?cs=srgb&dl=pexels-nicole-avagliano-1132392-2749481.jpg&fm=jpg",
+            image: anniversaryPic,
             title1: "Anniversary",
             title2: "Event",
             overlayColor: "bg-[#E3E2DE]",
             fontColor: "text-[#302F2B]"
         },
         {
-            image: "https://images.unsplash.com/photo-1484950763426-56b5bf172dbb?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8MTkyMHgxMDgwJTIwd2FsbHBhcGVyfGVufDB8fDB8fHww",
+            image: birthdayPic,
             title1: "Birthday",
             title2: "Celebration",
-            overlayColor: "bg-[#E3E2DE]",
+            overlayColor: "bg-[#BCD0DB]",
             fontColor: "text-[#302F2B]"
         },
         {
-            image: "https://images.unsplash.com/photo-1466854076813-4aa9ac0fc347?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fDE5MjB4MTA4MCUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D",
+            image: bridalImg,
             title1: "Bridal",
             title2: "Shower",
-            overlayColor: "bg-[#E3E2DE]",
-            fontColor: "text-[#302F2B]"
+            overlayColor: "bg-[#E9DCC9]",
+            fontColor: "text-[#898363]"
         }
     ];
 
@@ -101,12 +105,12 @@ function Carousel() {
                                 {/* Overlay text containers */}
                                 <div className="absolute left-0 md:left-12 bottom-12 z-10 px-4">
                                     <div className={`${slide.overlayColor} opacity-90 px-4 py-2 w-full`}>
-                                        <h2 className={`${slide.fontColor} text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-wide`}>
+                                        <h2 className={`${slide.fontColor} text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-wide playfair-display`}>
                                             {slide.title1}
                                         </h2>
                                     </div>
                                     <div className={`${slide.overlayColor} opacity-90 px-2 md:px-4 py-1 md:py-2 mb-2 ml-4 md:ml-8 w-fit`}>
-                                        <p className={`${slide.fontColor} text-xl sm:text-xl md:text-3xl lg:text-5xl`}>
+                                        <p className={`${slide.fontColor} text-xl sm:text-xl md:text-3xl lg:text-5xl playfair-display`}>
                                             {slide.title2}
                                         </p>
                                     </div>

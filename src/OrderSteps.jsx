@@ -156,7 +156,7 @@ function OrderSteps() {
             {/* 1. How to Order + Step-by-Step */}
             <div className="text-center">
               <h2 className="text-gray-800 text-4xl font-extrabold playfair-display">How to Order</h2>
-              <h1 className="text-5xl font-bold text-[#77815C] mb-4">Step-by-step</h1>
+              <h1 className="text-5xl font-bold text-[#77815C] mb-4 lato">Step-by-step</h1>
             </div>
             
             {/* 2. Steps */}
@@ -164,26 +164,26 @@ function OrderSteps() {
               {steps.map((step, index) => (
                 <div
                   key={index}
-                  className="flex flex-col items-start p-4 bg-[#f8f7f3] rounded-xl shadow space-y-4"
+                  className="flex flex-col items-start p-4 bg-[#f8f7f3] rounded-xl shadow space-y-4 hover:shadow-lg"
                 >
-                  <span className="text-lg font-bold text-gray-800">{step.number}</span>
-                  <div className="flex items-center">
+                  <span className="text-lg font-bold text-gray-800 lato">{step.number}</span>
+                  <div className="flex items-center lato">
                     <h3 className="font-bold text-gray-800 text-xl">{step.title}</h3>
                     <div className="text-[#4B4B4B] ml-2">{step.icon}</div>
                   </div>
-                  <p className="text-sm text-gray-600">{step.description}</p>
+                  <p className="text-sm text-gray-600 lato">{step.description}</p>
                 </div>
               ))}
             </div>
             
             {/* 3. Terms and Conditions Button */}
             <div className="text-center mt-4">
-              <p className="text-lg text-gray-900 mb-3 leading-relaxed">
+              <p className="text-lg text-gray-900 mb-3 leading-relaxed lato">
                 For more details on <br/> 
                 payment please <br/>
                 read below: 
               </p>
-              <button className="bg-[#E9DCC9] text-black px-4 py-2 rounded-full text-sm shadow"
+              <button className="bg-[#E9DCC9] text-black px-4 py-2 rounded-full text-sm lato shadow cursor-pointer"
                       onClick={() => setButtonTnC(true)}>
                 Terms and Conditions
               </button>
@@ -196,18 +196,18 @@ function OrderSteps() {
               {/* Left Column */}
               <div>
                 <h2 className="text-gray-800 text-3xl lg:text-4xl font-extrabold playfair-display px-6 lg:px-10">How to Order</h2>
-                <h1 className="text-4xl lg:text-5xl font-bold text-[#77815C] mb-6 lg:mb-10 px-6 lg:px-10">Step-by-step</h1>
+                <h1 className="text-4xl lg:text-5xl font-bold text-[#77815C] mb-6 lg:mb-10 px-6 lg:px-10 lato">Step-by-step</h1>
               </div>
               <div className="md:ml-5">
                 <Flower/> 
               </div>
               <div className="-mt-40 lg:-mt-50 z-100">
-                <p className="text-base lg:text-lg px-4 text-gray-900 mb-3 lg:mb-4 leading-relaxed">
+                <p className="text-base lg:text-lg px-4 text-gray-900 mb-3 lg:mb-4 leading-relaxed lato">
                   For more details on <br/> 
                   payment please <br/>
                   read below: 
                 </p>
-                <button className={`bg-[#E9DCC9] text-black px-4 py-2 rounded-full text-sm shadow}`}
+                <button className="bg-[#E9DCC9] text-black px-4 py-2 rounded-full text-sm shadow cursor-pointer lato"
                         onClick={() => setButtonTnC(true)}>
                   Terms and Conditions
                 </button>
@@ -220,7 +220,7 @@ function OrderSteps() {
                 {steps.map((step, index) => (
                   <div
                     key={index}
-                    className="flex flex-col items-start p-3 lg:p-4 bg-[#f8f7f3] rounded-xl shadow space-y-3 lg:space-y-5"
+                    className="flex flex-col items-start p-3 lg:p-4 bg-[#f8f7f3] rounded-xl shadow space-y-3 lg:space-y-5 hover:shadow-xl"
                   >
                     <span className="text-base lg:text-lg font-bold text-gray-800">{step.number}</span>
                     <div className="flex items-center">

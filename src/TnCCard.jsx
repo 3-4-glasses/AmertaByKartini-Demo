@@ -2,15 +2,14 @@ import React from "react";
 
 function TnCCard(props){
     const tncContent = (
-        <div>
+        <div className="lato">
             <h2 className="text-2xl font-bold mb-4">Terms and Conditions</h2>
-            <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl nec ultricies lacinia, nisl nisl aliquam nisl, nec ultricies nisl nisl nec nisl.</p>
-            <p className="mb-4">Nullam auctor, nisl nec ultricies lacinia, nisl nisl aliquam nisl, nec ultricies nisl nisl nec nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            {/* Add more paragraphs as needed to test scrolling */}
-            <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl nec ultricies lacinia, nisl nisl aliquam nisl, nec ultricies nisl nisl nec nisl.</p>
-            <p className="mb-4">Nullam auctor, nisl nec ultricies lacinia, nisl nisl aliquam nisl, nec ultricies nisl nisl nec nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl nec ultricies lacinia, nisl nisl aliquam nisl, nec ultricies nisl nisl nec nisl.</p>
-            <p className="mb-4">Nullam auctor, nisl nec ultricies lacinia, nisl nisl aliquam nisl, nec ultricies nisl nisl nec nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p className="mb-4">Payment dengan DP sebesar 50% diawal dari total payment & pelunasan <b>wajib</b> dilakukan max. H-3 sebelum tanggal acara.</p>
+            <p className="mb-4">Apabila telat melunasi di H-3, dikenakan <b>penalty charge</b> seharga Rp. 50.000,-/jam.</p>
+            <p className="mb-4">Bila ingin request <b>posisi set up decor</b>, wajib menginfokan admin max. H-3 dari tanggal acara, 
+            jika tidak ada info/request maka posisi decor akan disesuaikan oleh team kami di lokasi. </p>
+            <p className="mb-4">Setelah melakukan payment, kami <b>tidak menerima refund</b> dan komplain dengan alasan apapun terhadap hal yang 
+            sudah tercantum pada sudah notes yang sudah kami sediakan.</p>
         </div>
     )
 
@@ -33,7 +32,7 @@ function TnCCard(props){
                 {/* Footer with download button */}
                 <div className="border-t border-gray-200 p-4 flex justify-end">
                     <button 
-                    className="bg-[#77815C] hover:bg-[#5c644a] text-white px-4 py-2 rounded-md flex items-center"
+                    className="bg-[#898363] hover:bg-[#5c644a] text-white px-4 py-2 rounded-md flex items-center"
                     >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />

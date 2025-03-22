@@ -1,8 +1,9 @@
 import React from "react";
+import qrcode from './assets/wa_qrcode.png';
 
 function ContactUs() {
     const openWhatsApp = () => {
-        window.open("https://wa.me/081357734540", "_blank");
+        window.open("https://qr.me-qr.com/yAycvgUg", "_blank");
     };
 
     const shareViaWhatsApp = () => {
@@ -10,11 +11,11 @@ function ContactUs() {
             navigator.share({
                 title: 'Contact Us',
                 text: 'Contact us on WhatsApp',
-                url: 'https://wa.me/081357734540',
+                url: 'https://qr.me-qr.com/yAycvgUg',
             })
                 .catch((error) => console.error('Error sharing:', error));
         } else {
-            window.open('https://api.whatsapp.com/send?text=Contact%20us%20on%20WhatsApp!%20https://wa.me/081357734540', '_blank');
+            window.open('https://api.whatsapp.com/send?text=Contact%20us%20on%20WhatsApp!%20https://wa.me/+6287786576543', '_blank');
         }
     }
 
@@ -34,9 +35,9 @@ function ContactUs() {
                     {/* QR Code Section - container only for the QR image itself */}
                     <div className="flex flex-col items-center">
                         {/* QR code section with white rounded border */}
-                        <div className="w-32 h-32 md:w-40 md:h-40 bg-white flex items-center justify-center rounded-lg shadow-md">
+                        <div className="w-32 h-32 md:w-40 md:h-40 p-1 bg-white flex items-center justify-center rounded-lg shadow-md">
                             <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
+                                src={qrcode}
                                 alt="QR Code"
                                 className="max-w-full max-h-full"
                             />
@@ -54,7 +55,7 @@ function ContactUs() {
                     <div className="flex flex-col items-center">
                         <button
                             onClick={openWhatsApp}
-                            className="bg-[#E9DCC9] text-black font-medium py-2 px-4 md:py-3 md:px-6 rounded-3xl transition-colors w-38 md:w-49 cursor-pointer text-sm md:text-base"
+                            className="bg-[#E9DCC9] text-black font-medium py-2 px-4 md:py-3 md:px-6 rounded-4xl transition-colors w-38 md:w-49 cursor-pointer text-sm md:text-base"
                             style={{ fontFamily: "Lato, sans-serif" }}
                         >
                             Add on WhatsApp!

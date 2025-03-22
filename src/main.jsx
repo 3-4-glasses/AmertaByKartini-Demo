@@ -2,6 +2,7 @@ import { StrictMode, useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { useSpring, animated } from "@react-spring/web";
 import "./index.css";
+import logo from './assets/logo_amerta_by_kartini.png'
 import AboutUs from "./AboutUs.jsx";
 import OrderSteps from "./OrderSteps.jsx";
 import ContactUs from "./ContactUs.jsx";
@@ -25,7 +26,7 @@ const App = () => {
         
         if (prevY > 0) { // Scroll down
           setFakeScrollY((prev) => {
-            const newScrollY = Math.min(prev + 40, window.innerHeight * 2);
+            const newScrollY = Math.min(prev + 20, window.innerHeight * 2);
             if (newScrollY >= window.innerHeight * 1.5) {
               setBallHidden(true);
               setScrollEnabled(true);
@@ -34,7 +35,7 @@ const App = () => {
           });
         } else if (prevY < 0) { //Scroll up
           setFakeScrollY((prev) => {
-            const newScrollY = Math.max(prev - 40, 0);
+            const newScrollY = Math.max(prev - 20, 0);
             return newScrollY;
           });
         }
@@ -82,19 +83,28 @@ const App = () => {
       {/* Expanding Ball Animation */}
       {!scrollEnabled || !ballHidden ? (
       <div
-        className="fixed inset-0 flex items-center justify-center bg-blue-200 z-[60]"
+        className="fixed inset-0 flex flex-col items-center justify-center bg-[#E3E2DD] z-[60] p-4"
         style={{
           maskImage: `radial-gradient(circle ${fakeScrollY}px at 50% 50%, transparent 50%, black 40%)`, // Change the transparent if u want it to be gradient
         }}
       >
-        <p className="z-[60] text-white text-center">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum cumque amet
-          voluptatibus quam itaque illum quae excepturi veritatis perferendis officia
-          doloremque sint doloribus at, sed, velit quasi incidunt autem corrupti.
-        </p>
+        <img className="h-10 mb-1 md:mb-4" src={logo} />
+        <h1 className="z-[60] text-[#302F2B] text-center text-6xl lato">
+          Your forever moment, forever yours.
+        </h1>
+        <div className="mt-6 md:mt-10 animate-bounce">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            fill="currentColor"
+            className="h-8 w-8 text-[#302F2B]"
+          >
+            <path d="M11.9997 13.1714L16.9495 8.22168L18.3637 9.63589L11.9997 15.9999L5.63574 9.63589L7.04996 8.22168L11.9997 13.1714Z" />
+          </svg>
+        </div>
       </div>
-
-
       ) : null}
 
       {/* Scrollable Content */}
