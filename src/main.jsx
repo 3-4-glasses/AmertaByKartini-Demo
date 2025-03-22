@@ -16,8 +16,6 @@ const App = () => {
   const [ballHidden, setBallHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const maxSize = Math.max(window.innerWidth, window.innerHeight) * 2; // Ensure full coverage
-
   useEffect(() => {
     if (!scrollContainerRef.current) return; // Prevent error if ref is not ready
     const handleScroll = (e) => {
@@ -78,14 +76,6 @@ const App = () => {
       }
     };
   }, [scrollContainerRef, scrollEnabled]);
-
-  // Ball grows when scrolling down, shrinks when scrolling up
-  const ballStyle = useSpring({
-    width: ballHidden ? "0px" : `${0 + (fakeScrollY / (window.innerHeight * 2)) * maxSize}px`,
-    height: ballHidden ? "0px" : `${0 + (fakeScrollY / (window.innerHeight * 2)) * maxSize}px`,
-    opacity: ballHidden ? 0 : 1,
-    config: { tension: 170, friction: 20 }, 
-  });
 
   return (
     <>
