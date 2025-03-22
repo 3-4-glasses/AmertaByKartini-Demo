@@ -19,6 +19,7 @@ const App = () => {
   const maxSize = Math.max(window.innerWidth, window.innerHeight) * 2; // Ensure full coverage
 
   useEffect(() => {
+    if (!scrollContainerRef.current) return; // Prevent error if ref is not ready
     const handleScroll = (e) => {
       if (!scrollEnabled) {
         e.preventDefault(); // Prevent actual scrolling
@@ -44,11 +45,11 @@ const App = () => {
     };
 
     const handleReverseScroll = () => {
-      if (scrollEnabled && scrollContainerRef.current?.scrollTop === 0) {
+      if (scrollEnabled && scrollContainerRef.current && scrollContainerRef.current.scrollTop === 0) {
         setScrollEnabled(false);
         setBallHidden(false);
         setFakeScrollY(window.innerHeight * 2);
-
+    
         const interval = setInterval(() => {
           setFakeScrollY((prev) => {
             const newScrollY = Math.max(prev - 40, 0);
@@ -60,6 +61,7 @@ const App = () => {
         }, 16);
       }
     };
+    
 
     window.addEventListener("wheel", handleScroll, { passive: false });
     window.addEventListener("touchmove", handleScroll, { passive: false });
@@ -75,7 +77,7 @@ const App = () => {
         scrollContainerRef.current.removeEventListener("scroll", handleReverseScroll);
       }
     };
-  }, [fakeScrollY, scrollEnabled]);
+  }, [scrollContainerRef, scrollEnabled]);
 
   // Ball grows when scrolling down, shrinks when scrolling up
   const ballStyle = useSpring({
@@ -89,10 +91,20 @@ const App = () => {
     <>
       {/* Expanding Ball Animation */}
       {!scrollEnabled || !ballHidden ? (
-        <div className="fixed inset-0 flex items-center justify-center bg-transparent z-1000">
-          
-          <animated.div className="rounded-full bg-amber-950 aspect-square bg-transparent" style={ballStyle} />
-        </div>
+      <div
+        className="fixed inset-0 flex items-center justify-center bg-blue-200 z-[60]"
+        style={{
+          maskImage: `radial-gradient(circle ${fakeScrollY}px at 50% 50%, transparent 50%, black 40%)`, // Change the transparent if u want it to be gradient
+        }}
+      >
+        <p className="z-[60] text-white text-center">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum cumque amet
+          voluptatibus quam itaque illum quae excepturi veritatis perferendis officia
+          doloremque sint doloribus at, sed, velit quasi incidunt autem corrupti.
+        </p>
+      </div>
+
+
       ) : null}
 
       {/* Scrollable Content */}

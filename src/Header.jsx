@@ -2,7 +2,7 @@ import React from 'react';
 
 function Header() {
   return (
-    <header className="fixed top-0 left-0 w-full z-500">
+    <header className="fixed top-0 left-0 w-full z-50">
         <div className="backdrop-blur-md bg-white/20">
             <div className="container mx-auto px-6 sm:px-8 py-4 flex items-center justify-between">
                 {/* Logo */}
