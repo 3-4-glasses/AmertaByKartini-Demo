@@ -177,7 +177,7 @@ function OrderSteps() {
             </div>
             
             {/* 3. Terms and Conditions Button */}
-            <div className="text-center mt-4">
+            <div className="text-center mt-4 -z-10">
               <p className="text-lg text-gray-900 mb-3 leading-relaxed lato">
                 For more details on <br/> 
                 payment please <br/>
@@ -201,7 +201,7 @@ function OrderSteps() {
               <div className="md:ml-5">
                 <Flower/> 
               </div>
-              <div className="-mt-40 lg:-mt-50 z-100">
+              <div className="-mt-40 lg:-mt-50 z-10">
                 <p className="text-base lg:text-lg px-4 text-gray-900 mb-3 lg:mb-4 leading-relaxed lato">
                   For more details on <br/> 
                   payment please <br/>
