@@ -177,7 +177,7 @@ function OrderSteps() {
             </div>
             
             {/* 3. Terms and Conditions Button */}
-            <div className="text-center mt-4 -z-10">
+            <div className="text-center mt-4 z-10">
               <p className="text-lg text-gray-900 mb-3 leading-relaxed lato">
                 For more details on <br/> 
                 payment please <br/>

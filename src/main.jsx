@@ -2,6 +2,7 @@ import { StrictMode, useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { useSpring, animated } from "@react-spring/web";
 import "./index.css";
+import "./assets/fonts/fonts.css";
 import logo from './assets/logo_amerta_by_kartini.png'
 import AboutUs from "./AboutUs.jsx";
 import OrderSteps from "./OrderSteps.jsx";
@@ -26,7 +27,7 @@ const App = () => {
         
         if (prevY > 0) { // Scroll down
           setFakeScrollY((prev) => {
-            const newScrollY = Math.min(prev + 20, window.innerHeight * 2);
+            const newScrollY = Math.min(prev + 40, window.innerHeight * 2);
             if (newScrollY >= window.innerHeight * 1.5) {
               setBallHidden(true);
               setScrollEnabled(true);
@@ -35,7 +36,7 @@ const App = () => {
           });
         } else if (prevY < 0) { //Scroll up
           setFakeScrollY((prev) => {
-            const newScrollY = Math.max(prev - 20, 0);
+            const newScrollY = Math.max(prev - 40, 0);
             return newScrollY;
           });
         }
@@ -117,6 +118,9 @@ const App = () => {
         <Header />
         <Carousel />
         <AboutUs />
+        <div className="w-full pt-4 pb-4 text-4xl font-extrabold playfair-display text-white [text-shadow:_0px_4px_4px_rgba(0,0,0,0.25)] text-center bg-[#A5D2CF]">
+          <p>Let’s make  your event one of a kind!</p>
+        </div>
         <OrderSteps />
         <ContactUs />
         <Footer />
