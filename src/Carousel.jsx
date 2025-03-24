@@ -3,7 +3,6 @@ import anniversaryPic from './assets/anniversaryImg.jpg'
 import bridalImg from './assets/bridalshower.jpg';
 import birthdayPic from './assets/birthdayImg.png'; 
 
-
 function Carousel() {
     const slides = [
         {
@@ -85,13 +84,13 @@ function Carousel() {
      
     return (
         <>
-        <div className="relative w-full h-screen max-h-screen overflow-hidden">
+        <div className="relative w-full h-screen overflow-hidden">
             <div className="fixed top-0 left-0 -z-100 w-full max-h-screen h-screen max-h-screen overflow-hidden">
                 <div className="absolute inset-0 w-full h-full">
 
                     {/* Carousel */}
                     <div 
-                        className="flex h-full transition-transform duration-500 ease-in-out"
+                        className="flex h-full transition-transform duration-200 ease-in-out"
                         style={{ transform: `translateX(-${current * 100}%)` }}
                     >
                         {slides.map((slide, index) => (
