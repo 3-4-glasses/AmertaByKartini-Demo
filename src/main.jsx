@@ -1,6 +1,5 @@
 import { StrictMode, useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
-import { useSpring, animated } from "@react-spring/web";
 import "./index.css";
 import "./assets/fonts/fonts.css";
 import logo from './assets/logo_amerta_by_kartini.png'
@@ -38,7 +37,7 @@ const App = () => {
       
       const interval = setInterval(() => {
         setFakeScrollY((prev) => {
-          const newScrollY = Math.min(prev + 60, window.innerHeight * 2);
+          const newScrollY = Math.min(prev + 20, window.innerHeight * 2);
           if (newScrollY >= window.innerHeight * 1.9) {
             clearInterval(interval);
             setBallHidden(true);
@@ -53,9 +52,8 @@ const App = () => {
 
   useEffect(() => {
     if (!scrollContainerRef.current || isAnimating) return; // Prevent error if ref is not ready
+    let touchStartY = 0; 
     const handleScroll = (e) => {
-
-      // e.preventDefault(); // Prevent actual scrolling /* ok this is so unnecessary, removed to allow the div in the bg to work
       
       if (!scrollEnabled && !isMobile) {
           setIsAnimating(true);
@@ -121,13 +119,45 @@ const App = () => {
       }
     }
     };
+
+    const handleTouchStart = (event) => {
+      touchStartY = event.touches[0].clientY;
+    };
+    const handleTouchMove = (event) => {
+      if (isAnimating) return;
+
+      const touchEndY = event.touches[0].clientY;
+      const swipeDistance = touchEndY - touchStartY;
+
+      if (swipeDistance > 30 && scrollContainerRef.current.scrollTop === 0) {  
+        setScrollEnabled(false);
+        setBallHidden(false);
+        setFakeScrollY(window.innerHeight * 1.9);
+        setIsAnimating(true);
+
+        const interval = setInterval(() => {
+          setFakeScrollY((prev) => {
+            const newScrollY = Math.max(prev - 20, 0);
+            if (newScrollY <= 0) {
+              clearInterval(interval);
+              setTimeout(() => {
+                setIsAnimating(false);
+              }, 1000);
+            }
+            return newScrollY;
+          });
+        }, 16);
+      }
+    };
     
 
-    if (!isMobile) {
-      window.addEventListener("wheel", handleScroll, { passive: false });
+    if (isMobile) {
+      scrollContainerRef.current.addEventListener("touchstart", handleTouchStart, { passive: false });
+      scrollContainerRef.current.addEventListener("touchmove", handleTouchMove, { passive: false });
+      
     }
     
-    window.addEventListener("touchmove", handleScroll, { passive: false });
+    window.addEventListener("wheel", handleScroll, { passive: false });
 
     if (scrollContainerRef.current) {
         scrollContainerRef.current.addEventListener("wheel", handleReverseScroll);
@@ -135,7 +165,8 @@ const App = () => {
 
     return () => {
       window.removeEventListener("wheel", handleScroll);
-      window.removeEventListener("touchmove", handleScroll);
+      scrollContainerRef.current.removeEventListener("touchstart", handleTouchStart);
+      scrollContainerRef.current.removeEventListener("touchmove", handleTouchMove);
       if (scrollContainerRef.current) {
         scrollContainerRef.current.removeEventListener("wheel", handleReverseScroll);
       }
