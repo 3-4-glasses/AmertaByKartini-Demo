@@ -16,7 +16,6 @@ const App = () => {
   const [fakeScrollY, setFakeScrollY] = useState(0);
   const [scrollEnabled, setScrollEnabled] = useState(false);
   const [ballHidden, setBallHidden] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -53,13 +52,29 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (!scrollContainerRef.current) return; // Prevent error if ref is not ready
-    
+    if (!scrollContainerRef.current || isAnimating) return; // Prevent error if ref is not ready
     const handleScroll = (e) => {
+
+      // e.preventDefault(); // Prevent actual scrolling /* ok this is so unnecessary, removed to allow the div in the bg to work
+      
       if (!scrollEnabled && !isMobile) {
-        e.preventDefault(); // Prevent actual scrolling
-        const prevY = e.deltaY || (e.touches && e.touches[0]?.clientY - lastScrollY);
-        
+          setIsAnimating(true);
+          const interval = setInterval(() => { // Animation is auto, idk i think its better for consistency
+            setFakeScrollY((prev) => {
+              const newScrollY = Math.min(prev + 20, window.innerHeight * 2);
+              if (newScrollY >= window.innerHeight * 1.9) {
+                clearInterval(interval);
+                setScrollEnabled(true);
+                setBallHidden(true);
+                setTimeout(() => {
+                  setIsAnimating(false);
+                }, 1000);
+              }
+              return newScrollY;
+            });
+        }, 16); // Slowed down here abit
+      }
+      /*
         if (prevY > 0) { // Scroll down
           setFakeScrollY((prev) => {
             const newScrollY = Math.min(prev + 40, window.innerHeight * 2);
@@ -76,12 +91,16 @@ const App = () => {
           });
         }
       }
-      setLastScrollY(e.touches?.[0]?.clientY || 0);
-    };
+      
+      */
+    
+    };  
 
-    // Handle reverse animation when scrolling back to top
-    const handleReverseScroll = () => {
-      if (scrollEnabled && scrollContainerRef.current && scrollContainerRef.current.scrollTop === 0) {
+    const handleReverseScroll = (event) => {
+      if(isAnimating) return;
+      if (scrollEnabled && scrollContainerRef.current && !isAnimating) {
+        if (scrollContainerRef.current.scrollTop === 0 && event.deltaY < 0) {
+    
         setScrollEnabled(false);
         setBallHidden(false);
         setFakeScrollY(window.innerHeight * 1.9);
@@ -89,17 +108,21 @@ const App = () => {
     
         const interval = setInterval(() => {
           setFakeScrollY((prev) => {
-            const newScrollY = Math.max(prev - 40, 0);
+            const newScrollY = Math.max(prev - 20, 0);
             if (newScrollY <= 0) {
               clearInterval(interval);
-              setIsAnimating(false);
+              setTimeout(() => {
+                setIsAnimating(false);
+              }, 1000);
             }
             return newScrollY;
           });
         }, 16);
       }
+    }
     };
     
+
     if (!isMobile) {
       window.addEventListener("wheel", handleScroll, { passive: false });
     }
@@ -107,17 +130,18 @@ const App = () => {
     window.addEventListener("touchmove", handleScroll, { passive: false });
 
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.addEventListener("scroll", handleReverseScroll);
+        scrollContainerRef.current.addEventListener("wheel", handleReverseScroll);
     }
 
     return () => {
       window.removeEventListener("wheel", handleScroll);
       window.removeEventListener("touchmove", handleScroll);
       if (scrollContainerRef.current) {
-        scrollContainerRef.current.removeEventListener("scroll", handleReverseScroll);
+        scrollContainerRef.current.removeEventListener("wheel", handleReverseScroll);
       }
     };
-  }, [scrollContainerRef, scrollEnabled, isMobile, isAnimating]);
+  }
+, [scrollEnabled, isMobile, isAnimating]);
 
   return (
     <>
