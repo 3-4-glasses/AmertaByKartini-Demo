@@ -37,20 +37,20 @@ function ContactUs() {
                     <div className="lg:grow-2 order-first"></div>
 
                      {/* Wrapper of the LEFT side. - Get in touch, address, etc.*/}
-                    <div className="flex flex-col order-first justify-center items-center "> 
+                    <div className="flex flex-col order-first justify-center items-center"> 
 
-                        <h2 className="mt-6 mb-5 text-5xl md:text-6xl text-[#302F2B] text-center lg:text-left font-extrabold" style={{ fontFamily: 'Playfair Display, serif' }}>Get in touch!</h2>
+                        <h2 className="mt-6 mb-5 text-5xl md:text-6xl text-[#302F2B] text-center md:text-left font-extrabold" style={{ fontFamily: 'Playfair Display, serif' }}>Get in touch!</h2>
 
-                        <div className = "flex flex-row justify-center lg:justify-stretch gap-3 md:gap-1">
+                        <div className = "flex flex-row justify-center lg:justify-stretch gap-3">
                             <div className ="pt-5 grow-2 lg:py-0">
-                            <h1 className ="text-center md:text-left font-semibold">CONTACT US</h1>
-                            <h1 className ="text-center md:text-left">(+62) 813 1234 5678</h1>
-                            <h1 className ="text-center md:text-left">loremipsum@gmail.com</h1>
+                            <h1 className ="text-center md:text-left font-semibold md:text-sm">CONTACT US</h1>
+                            <h1 className ="text-center md:text-left md:text-sm">(+62) 813 1234 5678</h1>
+                            <h1 className ="text-center md:text-left md:text-sm">loremipsum@gmail.com</h1>
                             </div>
 
                             <div className="pt-5 grow-3 lg:py-0">
-                            <h1 className="text-center md:text-left font-semibold">ADDRESS</h1>
-                            <h1 className ="text-center md:text-left">Jl. Displayed Road Here, No. 10</h1>
+                            <h1 className="text-center md:text-left font-semibold md:text-sm">ADDRESS</h1>
+                            <h1 className ="text-center md:text-left md:text-sm">Jl. Displayed Road Here, No. 10</h1>
                             </div>
                         </div>
                         
