@@ -5,11 +5,10 @@ import bgVidPoster from './assets/bg-vid.jpg';
 import './AboutUs.css';
 import './assets/fonts/fonts.css';
 
-
 function VidBackground(){
   return(
     <div className="top-0 absolute left-0 w-full h-screen overflow-hidden z-0">
-    <video className="w-full h-full object-cover opacity-50" autoPlay muted loop preload="auto" playsinline poster={bgVidPoster}>
+    <video className="w-full h-full object-cover opacity-50" autoPlay muted loop preload="auto" playsInline poster={bgVidPoster}>
       <source src={bgVid} type="video/mp4" />
       <source src={bgVidFallback} type="video/webm" />
     </video>
@@ -42,7 +41,7 @@ function ServiceDesc(){
 
 function AboutUs() {
   return (
-      <div className="overflow-x-hidden">
+    <div className="snap-start h-screen overflow-x-hidden relative bg-white">
         <VidBackground/>
         <div className="h-screen flex justify-center items-center relative z-10 text-center lg:text-left px-4 py-8 sm:px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] w-full max-w-screen-xl">

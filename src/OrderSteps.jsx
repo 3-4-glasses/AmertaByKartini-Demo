@@ -1,9 +1,10 @@
-import './OrderSteps.css';
+import { useEffect, useState } from 'react';
 import { FaRegUser, FaRegCheckCircle } from 'react-icons/fa';
 import { MdOutlinePayment } from 'react-icons/md';
 import { RiVerifiedBadgeLine } from 'react-icons/ri';
 import { BiImageAdd } from 'react-icons/bi';
 import flowerImg from './assets/flower.jpg';
+import TnCCard from './TnCCard.jsx';
 
 <img src={flowerImg} alt="Flower Decoration" className="top-0 left-0 w-64 brightness-100 h-auto opacity-20 z-5" />
 
@@ -134,44 +135,99 @@ function OrderSteps() {
     },
   ];
 
+  const [buttonTnC, setButtonTnC] = useState(false);
+  
+  {/* Prevents scrolling when pop-up card is active */}
+  {/* BE AWARE OF ANY PREVIOUSLY ADDED OVERFLOW */}
+  useEffect(() => {
+    if (buttonTnC){
+      document.body.classList.add('overflow-hidden');
+    }else{
+      document.body.classList.remove('overflow-hidden');
+    }
+  }, [buttonTnC])
+
   return (
     <>
-      <div className="min-h-screen bg-[#f8f7f3] flex flex-col items-start justify-center px-4 py-10">
+      <div className="bg-[#f8f7f3] flex flex-col items-center justify-center px-4 py-6 md:py-8 lg:py-10">
         <section className="w-full max-w-8xl">
-          <div className="grid md:grid-cols-3 gap-30">
+          {/* Mobile Layout - Flex Column */}
+          <div className="md:hidden flex flex-col w-full gap-6">
+            {/* 1. How to Order + Step-by-Step */}
+            <div className="text-center">
+              <h2 className="text-gray-800 text-4xl font-extrabold playfair-display">How to Order</h2>
+              <h1 className="text-5xl font-bold text-[#77815C] mb-4 lato">Step-by-step</h1>
+            </div>
+            
+            {/* 2. Steps */}
+            <div className="grid gap-4">
+              {steps.map((step, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-start p-4 bg-[#f8f7f3] rounded-xl shadow space-y-4 hover:shadow-lg"
+                >
+                  <span className="text-lg font-bold text-gray-800 lato">{step.number}</span>
+                  <div className="flex items-center lato">
+                    <h3 className="font-bold text-gray-800 text-xl">{step.title}</h3>
+                    <div className="text-[#4B4B4B] ml-2">{step.icon}</div>
+                  </div>
+                  <p className="text-sm text-gray-600 lato">{step.description}</p>
+                </div>
+              ))}
+            </div>
+            
+            {/* 3. Terms and Conditions Button */}
+            <div className="text-center mt-4 z-10">
+              <p className="text-lg text-gray-900 mb-3 leading-relaxed lato">
+                For more details on <br/> 
+                payment please <br/>
+                read below: 
+              </p>
+              <button className="bg-[#E9DCC9] text-black px-4 py-2 rounded-full text-sm lato shadow cursor-pointer"
+                      onClick={() => setButtonTnC(true)}>
+                Terms and Conditions
+              </button>
+            </div>
+          </div>
+          
+          {/* Tablet/Desktop Layout - Grid */}
+          <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-30">
             <div className="flex flex-col justify-between items-center relative w-full max-w-xl">
+              {/* Left Column */}
               <div>
-                <h2 className="text-gray-800 text-4xl font-extrabold playfair-display px-10">How to Order</h2>
-                <h1 className="text-5xl font-bold text-[#77815C] mb-10 px-10">Step-by-step</h1>
+                <h2 className="text-gray-800 text-3xl lg:text-4xl font-extrabold playfair-display px-6 lg:px-10">How to Order</h2>
+                <h1 className="text-4xl lg:text-5xl font-bold text-[#77815C] mb-6 lg:mb-10 px-6 lg:px-10 lato">Step-by-step</h1>
               </div>
               <div className="md:ml-5">
                 <Flower/> 
               </div>
-              <div className="-mt-50 z-100">
-                <p className="text-lg px-4 text-gray-900 mb-4 leading-relaxed">
+              <div className="-mt-40 lg:-mt-50 z-10">
+                <p className="text-base lg:text-lg px-4 text-gray-900 mb-3 lg:mb-4 leading-relaxed lato">
                   For more details on <br/> 
                   payment please <br/>
                   read below: 
                 </p>
-                <button className="bg-[#E9DCC9]! text-black px-4 py-2 rounded-full text-sm shadow">
+                <button className="bg-[#E9DCC9] text-black px-4 py-2 rounded-full text-sm shadow cursor-pointer lato"
+                        onClick={() => setButtonTnC(true)}>
                   Terms and Conditions
                 </button>
               </div>
             </div>
-       
+      
+            {/* Middle and Right Column */}
             <div className="md:col-span-2 flex flex-col justify-center">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-4 lg:gap-8">
                 {steps.map((step, index) => (
                   <div
                     key={index}
-                    className="flex flex-col items-start p-4 bg-[#f8f7f3] rounded-xl shadow space-y-5"
+                    className="flex flex-col items-start p-3 lg:p-4 bg-[#f8f7f3] rounded-xl shadow space-y-3 lg:space-y-5 hover:shadow-xl"
                   >
-                    <span className="text-lg font-bold text-gray-800">{step.number}</span>
+                    <span className="text-base lg:text-lg font-bold text-gray-800">{step.number}</span>
                     <div className="flex items-center">
-                      <h3 className="font-bold text-gray-800 text-xl">{step.title}</h3>
+                      <h3 className="font-bold text-gray-800 text-lg lg:text-xl">{step.title}</h3>
                       <div className="text-[#4B4B4B] ml-2">{step.icon}</div>
                     </div>
-                    <p className="text-sm text-gray-600">{step.description}</p>
+                    <p className="text-xs lg:text-sm text-gray-600">{step.description}</p>
                   </div>
                 ))}
               </div>
@@ -179,6 +235,9 @@ function OrderSteps() {
           </div>
         </section>
       </div>
+
+      {/* Terms and Condition Popup Card */}
+      <TnCCard trigger={buttonTnC} setTrigger={setButtonTnC}/>  
     </>
   );
 }
