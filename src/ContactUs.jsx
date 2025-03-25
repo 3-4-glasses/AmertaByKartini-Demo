@@ -34,7 +34,7 @@ function ContactUs() {
                 {/* Main row container - aligns the main elements */}
                 <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-8 w-full transform scale-90 lg:scale-100">
 
-                    <div className="lg:grow-2 order-first"></div>
+                    <div className="md:grow-2 order-first"></div>
 
                      {/* Wrapper of the LEFT side. - Get in touch, address, etc.*/}
                     <div className="flex flex-col order-first justify-center items-center"> 
@@ -85,7 +85,7 @@ function ContactUs() {
                        </div>
                      </div>
 
-                      <div className="lg:grow-2 order-last"></div>
+                      <div className="md:grow-2 order-last"></div>
 
                  
                 </div>
