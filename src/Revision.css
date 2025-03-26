@@ -1,0 +1,60 @@
+body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #FfFFe4;
+    padding-top: 30vh;
+  }
+
+.Container {
+    justify-content: center;
+    background-color: #FFFAF1;
+    box-shadow: 5px 5px 10px;
+    
+    place-items: center;
+    width: 60vw;
+
+    margin: auto;
+}
+
+.Title {
+    flex: 100%;
+    max-width: 100vw;
+    width: 100%;
+    height: 5vh;
+
+    font-size: 4vh;
+    text-align: center;
+    padding: 10px;
+}
+
+.Chat {
+    flex: 100%;
+    max-width: 100vw;
+    width: 100%;
+    padding: 10px;
+}
+
+.Chat p {
+    text-align: center;
+    font-size: 2vh;
+}
+
+.Picture {
+    flex: 100%;
+    padding: 10px;
+}
+
+.Picture img {
+    max-width: 10vw;
+    max-height: 10vh;
+    width: 100%;
+    height: 100%;
+}
+
+.Sub {
+    flex: 100%;
+    padding: 10px;
+    
+    font-size: 2vh;
+}
