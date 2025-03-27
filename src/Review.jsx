@@ -1,28 +1,54 @@
-function Review() {
+import pfp from "./assets/face.png"
 
+function PfpImage(props) {
+  return (
+    <div className="absolute -top-[5vh] left-1/2 transform -translate-x-1/2 z-10">
+      <img src={props.pfp} className="rounded-full w-24 h-24 object-cover aspect-square border-4 border-white shadow-lg" alt="Orr or urr" />
+    </div>
+  );
+}
+
+
+function ReviewBody(props){
+  return(
+  <div className="relative flex flex-col max-w-[90vw] sm:max-w-[30vw] bg-[#F6F5F0] p-4 text-center  place-items-center w-[50%] m-[2vh] mt-0 ">
+    <PfpImage pfp={pfp} />
+
+    <div className="w-full text-2xl text-center pb-2 mt-[10vh]">
+      <p>{props.heading}</p>
+    </div>
+    <div className="w-full p-2 text-center text-base">
+      <p>
+        {props.content}        
+      </p>
+    </div>
+    <div className="w-full p-2 text-center text-lg">{props.name}</div>
+  </div>
+  );
+}
+
+function Review() {
     return (
-        <div className="flex flex-wrap bg-yellow-100 pt-20 pb-20">
-          <div className="container mx-auto flex flex-col items-center justify-center bg-orange-50 shadow-lg w-1/2 p-4">
-            <div className="w-full h-[5vh] text-4xl text-center p-2">I love this Product!</div>
-    
-            <div className="w-full p-10">
-              <p className="text-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
-    
-            <div className="w-full p-2 flex justify-center">
-              <img 
-                src="somethingsomething.spg" 
-                alt="Orr or urr" 
-                className="max-w-[10vw] max-h-[10vh] w-full h-full"
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center place-items-center bg-[#BCD0DB] pt-20 pb-20">
+              <ReviewBody 
+                heading="I love this Product!"
+                content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum eligendi, iure vero nihil expedita voluptatem iusto deleniti at, saepe nesciunt dolorem voluptate unde molestiae atque. Libero natus explicabo maxime perspiciatis?"
+                name="David Nielson"
               />
-            </div>
-    
-            <div className="w-full p-2 text-center">David Nielson</div>
-          </div>
+              
+              <ReviewBody 
+                heading="I love this Product!"
+                content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum eligendi, iure vero nihil expedita voluptatem iusto deleniti at, saepe nesciunt dolorem voluptate unde molestiae atque. Libero natus explicabo maxime perspiciatis?"
+                name="David Nielson"
+              />
+
+              <ReviewBody 
+                heading="I love this Product!"
+                content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum eligendi, iure vero nihil expedita voluptatem iusto deleniti at, saepe nesciunt dolorem voluptate unde molestiae atque. Libero natus explicabo maxime perspiciatis?"
+                name="David Nielson"
+              />
         </div>
-      )
+    )
   }
   
   export default Review

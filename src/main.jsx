@@ -228,7 +228,7 @@ const App = () => {
           <p>Let's make your event one of a kind!</p>
         </div>
         <OrderSteps />
-        <Review />
+        <Review /> 
         <ContactUs />
         <Footer />
       </div>
