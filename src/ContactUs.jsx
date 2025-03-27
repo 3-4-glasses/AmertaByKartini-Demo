@@ -224,7 +224,7 @@ function ContactUs() {
       
                   {/* Right section - Message */}
                   <div className="w-full lg:w-1/3 relative">  
-                    <div>
+                    <div className="relative w-full">
                       <textarea 
                         id="message" 
                         className="w-full bg-gray-100 p-2 border-b-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#302F2B] placeholder-gray-500 min-h-[120px] montserrat" 
@@ -235,13 +235,16 @@ function ContactUs() {
                       />
                       {/* Upload button positioned at bottom right */}
                       <div className="absolute bottom-3 right-2">
-                        <button className="bg-gray-100 hover:bg-gray-300 text-gray-700 p-2 rounded">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                          </svg>
-                        </button>
-                      </div>
+                            <label className="bg-gray-100 hover:bg-gray-300 text-gray-700 rounded cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+                                    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z"/>
+                                </svg>
+                                <input type="file" className="hidden"/>
+                            </label>
+                        </div>
                     </div>
+                    <p className="w-full text-wrap break-words">test test test test test test test test test test test test test test test test test test test test test test test test test test test test test </p>
                   </div>
                 </div>
               </div>
