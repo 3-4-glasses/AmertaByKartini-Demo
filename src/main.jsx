@@ -9,6 +9,7 @@ import ContactUs from "./ContactUs.jsx";
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import Carousel from "./Carousel.jsx";
+import Review from "./Review.jsx";
 
 const App = () => {
   const scrollContainerRef = useRef(null);
@@ -227,6 +228,7 @@ const App = () => {
           <p>Let's make your event one of a kind!</p>
         </div>
         <OrderSteps />
+        <Review />
         <ContactUs />
         <Footer />
       </div>
