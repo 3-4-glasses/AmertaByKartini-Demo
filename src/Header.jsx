@@ -30,7 +30,7 @@ function Header() {
                     href="#contact-us"
                     className="text-[#302F2B] hover:text-gray-900 transition-colors duration-300"
                     >
-                    <button className="px-4 sm:px-6 py-2 bg-transparent hover:bg-white/50 border border-[#302F2B] lato rounded-full text-gray-700 cursor-pointer transition-all duration-300 ">
+                    <button className="px-4 sm:px-6 py-2 bg-transparent hover:bg-white/50 border border-[#302F2B] montserrat rounded-full text-gray-700 cursor-pointer transition-all duration-300 ">
                         Contact Us
                     </button>
                     </a>

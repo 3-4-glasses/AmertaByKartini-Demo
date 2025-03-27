@@ -104,12 +104,12 @@ function Carousel() {
                                 {/* Overlay text containers */}
                                 <div className="absolute left-0 md:left-12 bottom-12 z-10 px-4">
                                     <div className={`${slide.overlayColor} opacity-90 px-4 py-2 w-full`}>
-                                        <h2 className={`${slide.fontColor} text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-wide playfair-display`}>
+                                        <h2 className={`${slide.fontColor} text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-wide theseasons-bold`}>
                                             {slide.title1}
                                         </h2>
                                     </div>
                                     <div className={`${slide.overlayColor} opacity-90 px-2 md:px-4 py-1 md:py-2 mb-2 ml-4 md:ml-8 w-fit`}>
-                                        <p className={`${slide.fontColor} text-xl sm:text-xl md:text-3xl lg:text-5xl playfair-display`}>
+                                        <p className={`${slide.fontColor} text-xl sm:text-xl md:text-3xl lg:text-5xl theseasons-bold`}>
                                             {slide.title2}
                                         </p>
                                     </div>

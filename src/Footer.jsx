@@ -6,22 +6,22 @@ function Footer() {
     {
       id: 1,
       question: "Where are we located?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      answer: "We are based in Jakarta, Indonesia."
     },
     {
       id: 2,
       question: "How to contact us personally?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      answer: "You may reach us through WhatsApp, or via Email if you are a collaborator. Check our 'Collaborators' section in the Contact Us section!"
     },
     {
       id: 3,
       question: "What designs are permitted?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      answer: "Feel free to talk to us for design consultation! Each occasion will be designed and carry out according to our customer needs and characteristic. You may look at our catalogue for references."
     },
     {
       id: 4,
       question: "Where do I pay?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      answer: "Payment can be done through Bank Transfer after the contract is signed."
     }
   ];
 
@@ -54,18 +54,13 @@ function Footer() {
 
   return (
     <>
-    <style>
-      {`
-      @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
-      `}
-    </style>
     <footer className="bg-[#F6F5F0] text-white p-6">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between gap-6">
           
           {/* FAQ Section */}
           <div className="w-full md:w-1/2">
-            <h3 className="text-lg text-[#494444] font-bold mb-2" style={{ fontFamily: 'Lato, serif' }}>Commonly Asked Questions</h3>
+            <h3 className="text-lg text-[#494444] font-bold mb-2 montserrat">Commonly Asked Questions</h3>
             <div className="bg-[#F6F5F0] p-2 h-48 overflow-y-auto">
               {activeFaq === null ? (
                 // Show all questions when no FAQ is selected
@@ -76,7 +71,7 @@ function Footer() {
                       className="p-2 bg-[#F6F5F0] text-[#A49797] rounded cursor-pointer transition-colors"
                       onClick={() => toggleFaq(item.id)}
                     >
-                      <h4 className="font-medium text-sm" style={{ fontFamily: 'Lato, serif' }}>{item.question}</h4>
+                      <h4 className="font-medium text-sm montserrat">{item.question}</h4>
                     </div>
                   ))}
                 </div>
@@ -84,15 +79,14 @@ function Footer() {
                 // Show selected FAQ with back button
                 <div>
                   <button 
-                    className="flex items-center mb-2 text-[#A49797] transition-colors text-sm"
+                    className="flex items-center mb-2 text-[#A49797] transition-colors text-sm montserrat"
                     onClick={() => setActiveFaq(null)}
-                    style={{ fontFamily: 'Lato, serif' }}
                   >
-                    <span className="mr-1 text-[#A49797]" style={{ fontFamily: 'Lato, serif' }} >←</span>
+                    <span className="mr-1 text-[#A49797]">←</span>
                     Back
                   </button>
                   
-                  <div className="bg-[#BCD0DB] p-3 rounded" style={{ fontFamily: 'Lato, serif' }}>
+                  <div className="bg-[#BCD0DB] p-3 rounded montserrat-light">
                     <h4 className="font-medium mb-1 text-[#494444]">
                       {faqItems.find(item => item.id === activeFaq)?.question}
                     </h4>
@@ -107,7 +101,7 @@ function Footer() {
           
           {/* Social Media Section */}
           <div className="w-full md:w-1/2 text-[#494444]">
-            <h3 className="text-lg font-bold mb-2 text-left md:text-center" style={{ fontFamily: 'Lato, serif' }}>Social Media</h3>
+            <h3 className="text-lg font-bold mb-2 text-left md:text-center montserrat">Social Media</h3>
             <div className="flex justify-center">
               <div className="flex gap-3 max-w-xs">
                 {socialMedia.map((item) => (
@@ -129,7 +123,7 @@ function Footer() {
           
         </div>
         
-        <div className="mt-4 pt-4 border-t border-gray-700 text-center text-gray-400 text-sm">
+        <div className="mt-4 pt-4 border-t border-gray-700 text-center text-gray-400 text-sm montserrat">
           <p>&copy; {new Date().getFullYear()} Amerta By Kartini. All rights reserved.</p>
         </div>
       </div>

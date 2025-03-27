@@ -1,0 +1,48 @@
+.emphasis{
+    background-color:#898363;
+    color: transparent;
+    text-shadow: 2px 2px 3px rgba(255,255,255,0.3);
+    -webkit-background-clip: text;
+       -moz-background-clip: text;
+            background-clip: text;
+  }
+  
+@font-face {
+  font-family: 'TheSeasons Bold';
+  src: url('./assets/fonts/TheSeasons-Bold.otf') format('opentype');
+}
+
+.theseasons-bold{
+  font-family: 'TheSeasons Bold';
+}
+
+@font-face {
+    font-family: 'Aileron Heavy';
+    src: url('./assets/fonts/Aileron-Heavy.otf') format("opentype");
+  }
+
+.aileron-heavy{
+  font-family: 'Aileron Heavy';
+  }
+
+@font-face {
+    font-family: 'Montserrat Regular';
+    src: url('./assets/fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.montserrat {
+  font-family: 'Montserrat Regular';
+}
+
+@font-face {
+    font-family: 'Montserrat Light';
+    src: url('./assets/fonts/Montserrat-Light.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.montserrat-light{
+  font-family: 'Montserrat Light';
+}

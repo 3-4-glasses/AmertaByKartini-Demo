@@ -2,8 +2,6 @@ import aboutUsImg from './assets/about-us.jpg';
 import bgVid from './assets/bg-vid.mp4';
 import bgVidFallback from './assets/bg-vid.webm';
 import bgVidPoster from './assets/bg-vid.jpg';
-import './AboutUs.css';
-import './assets/fonts/fonts.css';
 
 function VidBackground(){
   return(
@@ -15,6 +13,7 @@ function VidBackground(){
     </div>
   )
 }
+
 function ImagSection(){
   return(
     <div className="flex justify-center lg:justify-start my-auto">
@@ -26,13 +25,13 @@ function ImagSection(){
 function ServiceDesc(){
   return(
     <div className="text-zinc-900 p-5">
-      <h2 className="text-4xl my-3 playfair-display">
+      <h2 className="text-4xl my-3 theseasons-bold">
         About Us
       </h2>
-      <h3 className="text-3xl lg:text-5xl my-5 lato">
+      <h3 className="text-3xl lg:text-5xl my-5 aileron-heavy">
         <span className="font-bold emphasis inset-shadow-grey-500 engravedText"> Amerta By Kartini </span> specializes in creating stylish and personalized mini events.
       </h3>
-      <p className="text-xl lg:text-2xl my-2 lato">
+      <p className="text-xl lg:text-2xl my-2 montserrat">
         Starting from artistic design and collaboration, we offer custom decor services that elevate each event with thoughtful detail.
       </p>
     </div>

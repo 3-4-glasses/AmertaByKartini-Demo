@@ -1,7 +1,7 @@
 import { StrictMode, useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import "./assets/fonts/fonts.css";
+import './fonts.css';
 import logo from './assets/logo_amerta_by_kartini.png'
 import AboutUs from "./AboutUs.jsx";
 import OrderSteps from "./OrderSteps.jsx";
@@ -10,6 +10,7 @@ import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import Carousel from "./Carousel.jsx";
 import Review from "./Review.jsx";
+import Catalogue from "./Catalogue.jsx";
 
 const App = () => {
   const scrollContainerRef = useRef(null);
@@ -150,7 +151,6 @@ const App = () => {
         }, 16);
       }
     };
-    
 
     if (isMobile) {
       scrollContainerRef.current.addEventListener("touchstart", handleTouchStart, { passive: false });
@@ -188,7 +188,7 @@ const App = () => {
         onClick={handleTap}
       >
         <img className="h-10 mb-1 md:mb-4" src={logo} />
-        <h1 className="z-[60] text-[#302F2B] text-center text-4xl md:text-6xl lato">
+        <h1 className="z-[60] text-[#302F2B] text-center text-4xl md:text-6xl montserrat">
           Your forever moment, forever yours.
         </h1>
         <div className="mt-6 md:mt-10 animate-bounce">
@@ -224,11 +224,12 @@ const App = () => {
         <Header />
         <Carousel />
         <AboutUs />
-        <div className="w-full pt-4 pb-4 text-4xl font-extrabold playfair-display text-white [text-shadow:_0px_4px_4px_rgba(0,0,0,0.25)] text-center bg-[#A5D2CF]">
-          <p>Let's make your event one of a kind!</p>
+        <Review />
+        <Catalogue/>
+        <div className="w-full pt-4 pb-4 text-2xl md:text-4xl font-extrabold playfair-display text-white [text-shadow:_0px_4px_4px_rgba(0,0,0,0.25)] text-center bg-[#A5D2CF]">
+          <p className="montserrat">Let's make your event one of a kind!</p>
         </div>
         <OrderSteps />
-        <Review /> 
         <ContactUs />
         <Footer />
       </div>
