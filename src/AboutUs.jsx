@@ -2,6 +2,7 @@ import aboutUsImg from './assets/about-us.jpg';
 import bgVid from './assets/bg-vid.mp4';
 import bgVidFallback from './assets/bg-vid.webm';
 import bgVidPoster from './assets/bg-vid.jpg';
+import TypewriterOnScroll from './components/TypewriterOnScroll.jsx'
 
 function VidBackground(){
   return(
@@ -29,7 +30,17 @@ function ServiceDesc(){
         About Us
       </h2>
       <h3 className="text-3xl lg:text-5xl my-5 aileron-heavy">
-        <span className="font-bold emphasis inset-shadow-grey-500 engravedText"> Amerta By Kartini </span> specializes in creating stylish and personalized mini events.
+        <TypewriterOnScroll
+          strings={[
+            "Amerta By Kartini"
+          ]}
+          options={{
+            delay: 40,
+            loop: true
+          }}
+          className='inline-block font-bold emphasis inset-shadow-grey-500 engravedText'
+        />      
+        <span className="inline">specializes in creating stylish and personalized mini events.</span>
       </h3>
       <p className="text-xl lg:text-2xl my-2 montserrat">
         Starting from artistic design and collaboration, we offer custom decor services that elevate each event with thoughtful detail.

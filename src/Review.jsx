@@ -12,7 +12,7 @@ function PfpImage({ pfp }) {
   );
 }
 
-function ReviewBody({ heading, content, name, role }) {
+function ReviewBody({ content, name, role }) {
   return (
     <div className="group relative flex flex-col w-full sm:max-w-[30vw] bg-[#BCD0DB] p-6 pt-20 text-center items-center rounded-xl shadow-md mb-16 sm:mb-12 sm:mx-4
       transition-all duration-300 hover:scale-105 hover:shadow-xl hover:z-20 hover:bg-[#a8c0d0]">
@@ -44,25 +44,25 @@ function Review() {
       heading: "Excellent Service!",
       content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum eligendi, iure vero nihil expedita voluptatem iusto deleniti at.",
       name: "David Nielson",
-      role: "Premium Member"
+      role: "Company ABC"
     },
     {
-      heading: "Life Changing!",
+      heading: "Great decorations and fun times.",
       content: "Saepe nesciunt dolorem voluptate unde molestiae atque. Libero natus explicabo maxime perspiciatis?",
       name: "Sarah Johnson",
-      role: "Long-term User"
+      role: "Director of XYZ"
     },
     {
-      heading: "Highly Recommend",
+      heading: "So beautiful and unique!",
       content: "Dolorum eligendi, iure vero nihil expedita voluptatem iusto deleniti at, saepe nesciunt dolorem voluptate unde molestiae atque.",
       name: "Michael Chen",
-      role: "First-time Buyer"
+      role: "Sweet 17th Anniversary"
     }
   ];
 
   return (
     <section className="bg-[#F6F5F0] py-12 md:py-20 px-4">
-      <h2 className="text-4xl md:text-6xl font-bold text-center text-[#BCD0DB] mb-16 md:mb-20 theseasons-bold">Testimonials</h2>
+      <h2 className="text-4xl md:text-6xl font-bold text-center text-[#BCD0DB] drop-shadow-lg mb-16 md:mb-20 theseasons-bold">Testimonials</h2>
       
       <div className="flex flex-col sm:flex-row flex-wrap justify-center items-stretch gap-8 sm:gap-6">
         {testimonials.map((testimonial, index) => (

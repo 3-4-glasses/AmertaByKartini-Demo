@@ -37,22 +37,25 @@ function ContactUs() {
         localStorage.setItem('contactFormData', JSON.stringify(formData));
     }, [formData]);
 
-    const openWhatsApp = () => {
-        window.open("https://qr.me-qr.com/yAycvgUg", "_blank");
-    };
-
-    const shareViaWhatsApp = () => {
-        if (navigator.share) {
-            navigator.share({
-                title: 'Contact Us',
-                text: 'Contact us on WhatsApp',
-                url: 'https://qr.me-qr.com/yAycvgUg',
-            })
-                .catch((error) => console.error('Error sharing:', error));
-        } else {
-            window.open('https://api.whatsapp.com/send?text=Contact%20us%20on%20WhatsApp!%20https://wa.me/+6287786576543', '_blank');
-        }
+  const openWhatsApp = () => {
+    const phone = "6287786576543"; // Without + prefix
+    const message = "Halo, saya ingin konsultasi untuk penyusunan acara!";
+    window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}&app_absent=0`, "_blank");
+  };
+  
+  const shareViaWhatsApp = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Contact Us',
+        text: 'Contact us on WhatsApp',
+        url: 'https://qr.me-qr.com/yAycvgUg',
+      })
+        .catch((error) => console.error('Error sharing:', error));
+    } else {
+      const message = encodeURIComponent('Halo, saya ingin konsultasi untuk penyusunan acara!');
+      window.open(`https://api.whatsapp.com/send?phone=+6287786576543&text=${message}`, '_blank');
     }
+  }
 
     const onFileChange = (e)=>{
       setFormData((oldForm)=>({...oldForm, attachments:Array.from(e.target.files)}))
