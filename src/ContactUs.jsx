@@ -6,9 +6,12 @@ function ContactUs() {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        message: ''
+        message: '',
+        attachments:[]
     });
     const [isFormValid, setIsFormValid] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
 
     // Load saved form data from localStorage on component mount
     useEffect(() => {
@@ -46,6 +49,10 @@ function ContactUs() {
         }
     }
 
+    const onFileChange = (e)=>{
+      setFormData((oldForm)=>({...oldForm, attachments:Array.from(e.target.files)}))
+    };
+
     const handleInputChange = (e) => {
         const { id, value } = e.target;
         setFormData(prev => ({
@@ -58,18 +65,50 @@ function ContactUs() {
         setFormData({
             name: '',
             email: '',
-            message: ''
+            message: '',
+            attachments: []
         });
         localStorage.removeItem('contactFormData');
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(prev => {
+          if (prev) return true; 
+          return true;
+        });
+        if (isSubmitting) return;
         if (isFormValid) {
             // Here you would typically send the data to a server
+            const httpFormData = new FormData();
+            httpFormData.append("name",formData.name);
+            httpFormData.append("email",formData.email);
+            httpFormData.append("message",formData.message);
+
+            for (let i = 0; i < formData.attachments.length; i++) {
+              httpFormData.append("attachments",formData.attachments[i]);
+            }
+            try {
+              const response = await fetch("http://localhost:3000/send-email", { // from server.js
+                  method: "POST",
+                  body: httpFormData,
+              });
+      
+              const result = await response.json(); 
+  
+                alert(result.message); 
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Failed to send email.");
+            } finally{
+              setTimeout(() => {
+                setIsSubmitting(false);  
+            }, 1000);
+            }
             console.log('Form submitted:', formData);
-            alert('Message sent successfully!');
             handleClear();
+        } else{
+          alert('One or more required fields are empty/invalid');
         }
     };
 
@@ -212,12 +251,12 @@ function ContactUs() {
                       </button>
                       <button 
                         onClick={handleSubmit}
-                        disabled={!isFormValid}
+                        disabled={!isFormValid || isSubmitting}
                         className={`grow border-2 border-none text-gray-600 font-semibold py-2 rounded montserrat ${
                           isFormValid ? 'bg-[#E9DCC9] cursor-pointer' : 'bg-gray-300 cursor-not-allowed'
                         }`}
                       >
-                        Send
+                        {isSubmitting ? "Sending..." : "Send"}
                       </button>
                     </div>
                   </div>
@@ -236,15 +275,19 @@ function ContactUs() {
                       {/* Upload button positioned at bottom right */}
                       <div className="absolute bottom-3 right-2">
                             <label className="bg-gray-100 hover:bg-gray-300 text-gray-700 rounded cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 bi bi-upload" fill="currentColor" viewBox="0 0 16 16">
                                     <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
                                     <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z"/>
                                 </svg>
-                                <input type="file" className="hidden"/>
+                                <input type="file" className="hidden" onChange={onFileChange} multiple/>
                             </label>
                         </div>
                     </div>
-                    <p className="w-full text-wrap break-words">test test test test test test test test test test test test test test test test test test test test test test test test test test test test test </p>
+                    <p className="w-full text-wrap break-words montserrat">
+                        {formData.attachments.length > 0 
+                          ? "Attached files: " + formData.attachments.map((file) => file.name).join(", ")
+                          : ""}
+                    </p>
                   </div>
                 </div>
               </div>
