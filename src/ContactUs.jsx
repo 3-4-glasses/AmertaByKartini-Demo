@@ -23,9 +23,14 @@ function ContactUs() {
 
     // Check form validity whenever formData changes
     useEffect(() => {
+        const isValidEmail = (email) => {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+        };
+
         const isValid = formData.name.trim() !== '' && 
-                       formData.email.trim() !== '' && 
-                       formData.message.trim() !== '';
+                        isValidEmail(formData.email.trim()) !== '' && 
+                        formData.message.trim() !== '';
         setIsFormValid(isValid);
         
         // Save form data to localStorage
