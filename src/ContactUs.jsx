@@ -29,7 +29,7 @@ function ContactUs() {
         };
 
         const isValid = formData.name.trim() !== '' && 
-                        isValidEmail(formData.email.trim()) !== '' && 
+                        isValidEmail(formData.email.trim()) && 
                         formData.message.trim() !== '';
         setIsFormValid(isValid);
         
