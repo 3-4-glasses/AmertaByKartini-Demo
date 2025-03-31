@@ -3,13 +3,13 @@ import logo from './assets/logo_amerta_by_kartini.png';
 
 function Header() {
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
+    <header className="fixed top-0 w-full z-50">
         <div className="backdrop-blur-md bg-white/20">
-            <div className="container mx-auto px-6 sm:px-8 -py-2 flex items-center justify-between">
+            <div className="container mx-auto px-6 sm:px-8 -py-2 flex justify-between">
                 {/* Logo */}
                 <div className="flex items-center">
-                    <div className="w-25 h-25 rounded-lg flex items-center justify-center">
-                        <span className="text-lg font-bold text-[#302F2B]">
+                    <div className="w-25 h-25 flex items-center">
+                        <span>
                             <img src={logo}/>
                         </span>
                     </div>
@@ -30,9 +30,9 @@ function Header() {
                     href="#contact-us"
                     className="text-[#302F2B] hover:text-gray-900 transition-colors duration-300"
                     >
-                    <button className="px-4 sm:px-6 py-2 bg-transparent hover:bg-white/50 border border-[#302F2B] montserrat rounded-full text-gray-700 cursor-pointer transition-all duration-300 ">
-                        Contact Us
-                    </button>
+                        <button className="px-4 sm:px-6 py-2 bg-transparent hover:bg-white/50 border border-[#302F2B] montserrat rounded-full text-gray-700 cursor-pointer transition-all duration-300 ">
+                            Contact Us
+                        </button>
                     </a>
                 </div>
             </div>
