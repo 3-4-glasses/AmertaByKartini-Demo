@@ -232,7 +232,7 @@ function ContactUs() {
                       <input 
                         type="text" 
                         id="name" 
-                        className="w-full bg-gray-100 p-2 bg-transparent border-b-2 border-gray-200 focus:outline-none focus:border-[#302F2B] placeholder-gray-500 montserrat" 
+                        className="w-full bg-transparent p-2 border-b-2 border-gray-200 focus:outline-none focus:border-[#302F2B] placeholder-gray-500 montserrat" 
                         placeholder="Name"
                         value={formData.name}
                         onChange={handleInputChange}
@@ -241,9 +241,9 @@ function ContactUs() {
 
                     <div>
                       <input 
-                        type="email" 
+                        type="email"
                         id="email" 
-                        className="w-full bg-gray-100 p-2 bg-transparent border-b-2 border-gray-200 focus:outline-none focus:border-[#302F2B] placeholder-gray-500 montserrat" 
+                        className="w-full bg-transparent p-2 border-b-2 border-gray-200 focus:outline-none focus:border-[#302F2B] placeholder-gray-500 montserrat" 
                         placeholder="Email Address"
                         value={formData.email}
                         onChange={handleInputChange}
