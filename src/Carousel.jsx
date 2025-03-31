@@ -84,10 +84,9 @@ function Carousel() {
      
     return (
         <>
-        <div className="relative w-full h-screen overflow-hidden">
-            <div className="fixed top-0 left-0 -z-100 w-full h-screen max-h-screen overflow-hidden">
+        <div className="w-full h-screen">
+            <div className="fixed -z-100 w-full h-screen max-h-screen">
                 <div className="absolute inset-0 w-full h-full">
-
                     {/* Carousel */}
                     <div 
                         className="flex h-full transition-transform duration-200 ease-in-out"
@@ -103,7 +102,7 @@ function Carousel() {
                                 
                                 {/* Overlay text containers */}
                                 <div className="absolute left-0 md:left-12 bottom-12 z-10 px-4">
-                                    <div className={`${slide.overlayColor} opacity-90 px-4 py-2 w-full`}>
+                                    <div className={`${slide.overlayColor} opacity-90 px-4 py-2 w-fit`}>
                                         <h2 className={`${slide.fontColor} text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-wide theseasons-bold`}>
                                             {slide.title1}
                                         </h2>
@@ -119,38 +118,36 @@ function Carousel() {
                     </div>
                 </div>
             </div>
-                    {/* Glow effect and manual control of carousel */}
-                    {showLeftGlow && (
-                        <div 
-                            className="absolute left-0 top-0 w-1/2 h-full cursor-pointer z-10"
-                            onClick={prevSlide}
-                        >
-                            <div className="absolute left-0 top-0 w-24 h-full bg-gradient-to-r from-white to-transparent opacity-25 pointer-events-none" />
-                        </div>
-                    )}
-                    {showRightGlow && (
-                        <div 
-                            className="absolute right-0 top-0 w-1/2 h-full cursor-pointer z-10"
-                            onClick={nextSlide}
-                        >
-                            <div className="absolute right-0 top-0 w-24 h-full bg-gradient-to-l from-white to-transparent opacity-25 pointer-events-none" />
-                        </div>
-                    )}
-
-                    {/* Navigation dots */}
-                    <div className="absolute bottom-4 left-0 right-0 flex justify-center">
-                        {slides.map((_, index) => (
-                            <span
-                                key={index}
-                                className={`h-2 w-2 md:h-3 md:w-3 mx-1 rounded-full cursor-pointer transition-colors duration-300 ${
-                                    index === current ? 'bg-white' : 'bg-gray-500 bg-opacity-70'
-                                }`}
-                                onClick={() => setCurrent(index)}
-                            />
-                        ))}
-                    </div>
+            {/* Glow effect and manual control of carousel */}
+            {showLeftGlow && (
+                <div 
+                    className="absolute left-0 w-1/2 h-full cursor-pointer z-10"
+                    onClick={prevSlide}
+                >
+                    <div className="absolute left-0 w-24 h-full bg-gradient-to-r from-white to-transparent opacity-60"/>
                 </div>
-            
+            )}
+            {showRightGlow && (
+                <div 
+                    className="absolute right-0 w-1/2 h-full cursor-pointer z-10"
+                    onClick={nextSlide}
+                >
+                    <div className="absolute right-0 w-24 h-full bg-gradient-to-l from-white to-transparent opacity-60"/>
+                </div>
+            )}
+
+            {/* Navigation dots */}
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+                {slides.map((_, index) => (
+                    <span
+                        key={index}
+                        className={`h-2 w-2 md:h-3 md:w-3 mx-1 rounded-full cursor-pointer transition-colors duration-300 ${
+                        index === current ? 'bg-white' : 'bg-gray-500 bg-opacity-70'
+                        }`}
+                    />
+                ))}
+            </div>        
+        </div>
         </>
     );
 }
