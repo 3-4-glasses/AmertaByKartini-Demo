@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import anniversaryPic from './assets/anniversaryImg.jpg'
-import bridalImg from './assets/bridalshower.jpg';
-import birthdayPic from './assets/birthdayImg.png'; 
+import React, { useState, useEffect, useRef } from 'react';
+import anniversaryPic from './assets/anniversaryImg.webp';
+import bridalImg from './assets/bridalshower.webp';
+import birthdayPic from './assets/birthday.webp'; 
 
 function Carousel() {
     const slides = [
@@ -30,29 +30,38 @@ function Carousel() {
 
     const [current, setCurrent] = useState(0);
     const [imagesLoaded, setImagesLoaded] = useState(false);
-    const numSlides = slides.length;
-    const [direction, setDirection] = useState(1); // For automation, 1 is left to right, -1 is right to left
+    const [direction, setDirection] = useState(1);
     const [showLeftGlow, setShowLeftGlow] = useState(false); 
     const [showRightGlow, setShowRightGlow] = useState(true);
+    const timerRef = useRef(null);
+    const numSlides = slides.length;
 
-    // Preload images
     useEffect(() => {
-        const imagePromises = slides.map(slide => {
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                img.src = slide.image;
-                img.onload = resolve;
-                img.onerror = reject;
-            });
+        const loadCurrentImage = new Promise((resolve, reject) => {
+            const img = new Image();
+            img.src = slides[current].image;
+            img.fetchPriority = "high";
+            img.onload = resolve;
+            img.onerror = reject;
         });
 
-        Promise.all(imagePromises)
+        loadCurrentImage
             .then(() => {
                 setImagesLoaded(true);
+                const remainingImages = slides
+                    .filter((_, index) => index !== current)
+                    .map(slide => {
+                        return new Promise(resolve => {
+                            const img = new Image();
+                            img.src = slide.image;
+                            img.onload = resolve;
+                            img.onerror = resolve;
+                        });
+                    });
+                return Promise.all(remainingImages);
             })
             .catch(err => {
-                console.error("Error preloading images:", err);
-                // Still set as loaded to prevent infinite loading state
+                console.error("Error loading first image:", err);
                 setImagesLoaded(true);
             });
     }, []);
@@ -64,10 +73,9 @@ function Carousel() {
         } else {
             setCurrent(c => c + 1);
         }
-        setShowLeftGlow(current + 1 > 0);
-        setShowRightGlow(current + 1 < numSlides - 1);
+        updateGlowStates(current + 1);
     };
-    
+
     const prevSlide = () => {
         if (current === 0) {
             setDirection(1);
@@ -75,16 +83,17 @@ function Carousel() {
         } else {
             setCurrent(c => c - 1);
         }
-        setShowLeftGlow(current - 1 > 0);
-        setShowRightGlow(current - 1 < numSlides - 1);
+        updateGlowStates(current - 1);
+    };
+
+    const updateGlowStates = (index) => {
+        setShowLeftGlow(index > 0);
+        setShowRightGlow(index < numSlides - 1);
     };
 
     useEffect(() => {
-        // Update glow states based on current slide
-        setShowLeftGlow(current > 0);
-        setShowRightGlow(current < numSlides - 1);
-
-        const timer = setInterval(() => {
+        updateGlowStates(current);
+        timerRef.current = setInterval(() => {
             if (direction === 1) {
                 if (current === numSlides - 1) {
                     setDirection(-1);
@@ -102,9 +111,9 @@ function Carousel() {
             }
         }, 5000);
 
-        return () => clearInterval(timer);
+        return () => clearInterval(timerRef.current);
     }, [current, direction, numSlides]);
-     
+
     if (!imagesLoaded) {
         return (
             <div className="w-full h-screen flex justify-center items-center bg-gray-100">
@@ -117,32 +126,35 @@ function Carousel() {
     }
 
     return (
-        <>
         <div className="w-full h-screen">
-            {/* Add hidden preload images */}
-            <div className="hidden">
+            <div className="hidden" aria-hidden="true">
                 {slides.map((slide, index) => (
-                    <link key={`preload-${index}`} rel="preload" as="image" href={slide.image} />
+                    <link 
+                        key={`preload-${index}`} 
+                        rel="preload" 
+                        as="image" 
+                        href={slide.image}
+                        fetchpriority={index === current ? "high" : "low"}
+                    />
                 ))}
             </div>
-            
+
             <div className="fixed -z-100 w-full h-screen max-h-screen">
                 <div className="absolute inset-0 w-full h-full">
-                    {/* Carousel */}
                     <div 
-                        className="flex h-full transition-transform duration-200 ease-in-out"
+                        className="flex h-full transition-transform duration-500 ease-out will-change-transform"
                         style={{ transform: `translateX(-${current * 100}%)` }}
                     >
                         {slides.map((slide, index) => (
                             <div key={index} className="relative flex-none w-full h-full">
                                 <img 
                                     src={slide.image} 
-                                    alt={`Slide ${index + 1}`} 
-                                    loading={index === 0 ? 'eager' : 'lazy'}
+                                    alt={`${slide.title1} ${slide.title2}`} 
+                                    loading={index === current ? 'eager' : 'lazy'}
+                                    fetchpriority={index === current ? "high" : "auto"}
                                     className="object-cover w-full h-full"
+                                    style={{ aspectRatio: "16/9", objectPosition: "center" }}
                                 />
-                                
-                                {/* Overlay text containers */}
                                 <div className="absolute left-0 md:left-12 bottom-12 z-10 px-4">
                                     <div className={`${slide.overlayColor} opacity-90 px-4 py-2 w-fit`}>
                                         <h2 className={`${slide.fontColor} text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-wide theseasons-bold`}>
@@ -160,11 +172,12 @@ function Carousel() {
                     </div>
                 </div>
             </div>
-            {/* Glow effect and manual control of carousel */}
+
             {showLeftGlow && (
                 <div 
                     className="absolute left-0 w-1/2 h-full cursor-pointer z-10"
                     onClick={prevSlide}
+                    aria-label="Previous slide"
                 >
                     <div className="absolute left-0 w-24 h-full bg-gradient-to-r from-white to-transparent opacity-60"/>
                 </div>
@@ -173,24 +186,24 @@ function Carousel() {
                 <div 
                     className="absolute right-0 w-1/2 h-full cursor-pointer z-10"
                     onClick={nextSlide}
+                    aria-label="Next slide"
                 >
                     <div className="absolute right-0 w-24 h-full bg-gradient-to-l from-white to-transparent opacity-60"/>
                 </div>
             )}
 
-            {/* Navigation dots */}
             <div className="absolute bottom-4 left-0 right-0 flex justify-center">
                 {slides.map((_, index) => (
-                    <span
+                    <button
                         key={index}
+                        aria-current={index === current}
                         className={`h-2 w-2 md:h-3 md:w-3 mx-1 rounded-full cursor-pointer transition-colors duration-300 ${
-                        index === current ? 'bg-white' : 'bg-gray-500 bg-opacity-70'
+                            index === current ? 'bg-white' : 'bg-gray-500 bg-opacity-70'
                         }`}
                     />
                 ))}
-            </div>        
+            </div>
         </div>
-        </>
     );
 }
 
