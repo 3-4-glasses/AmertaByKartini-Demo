@@ -18,7 +18,7 @@ function VidBackground(){
 function ImagSection(){
   return(
     <div className="flex justify-center lg:justify-start my-auto">
-      <img src={aboutUsImg} className="mt-5 rounded-full size-35 md:size-60 lg:size-70 xl:size-86" alt="About Us" />
+      <img src={aboutUsImg} loading='lazy' className="mt-5 rounded-full size-35 md:size-60 lg:size-70 xl:size-86" alt="About Us" />
     </div>
     )
 }

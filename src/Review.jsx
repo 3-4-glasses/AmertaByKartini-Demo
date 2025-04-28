@@ -5,6 +5,7 @@ function PfpImage({ pfp }) {
     <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10">
       <img 
         src={pfp} 
+        loading="lazy"
         className="rounded-full w-20 h-20 md:w-24 md:h-24 object-cover aspect-square border-4 border-[#BCD0DB] shadow-lg transition-transform duration-300 group-hover:scale-110" 
         alt="Profile" 
       />

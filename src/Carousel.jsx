@@ -29,10 +29,33 @@ function Carousel() {
     ];
 
     const [current, setCurrent] = useState(0);
+    const [imagesLoaded, setImagesLoaded] = useState(false);
     const numSlides = slides.length;
     const [direction, setDirection] = useState(1); // For automation, 1 is left to right, -1 is right to left
     const [showLeftGlow, setShowLeftGlow] = useState(false); 
     const [showRightGlow, setShowRightGlow] = useState(true);
+
+    // Preload images
+    useEffect(() => {
+        const imagePromises = slides.map(slide => {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.src = slide.image;
+                img.onload = resolve;
+                img.onerror = reject;
+            });
+        });
+
+        Promise.all(imagePromises)
+            .then(() => {
+                setImagesLoaded(true);
+            })
+            .catch(err => {
+                console.error("Error preloading images:", err);
+                // Still set as loaded to prevent infinite loading state
+                setImagesLoaded(true);
+            });
+    }, []);
 
     const nextSlide = () => {
         if (current === numSlides - 1) {
@@ -82,9 +105,27 @@ function Carousel() {
         return () => clearInterval(timer);
     }, [current, direction, numSlides]);
      
+    if (!imagesLoaded) {
+        return (
+            <div className="w-full h-screen flex justify-center items-center bg-gray-100">
+                <div className="text-center">
+                    <div className="w-16 h-16 border-4 border-gray-600 border-t-blue-600 rounded-full animate-spin mx-auto"></div>
+                    <p className="mt-4 text-gray-700">Loading images...</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <>
         <div className="w-full h-screen">
+            {/* Add hidden preload images */}
+            <div className="hidden">
+                {slides.map((slide, index) => (
+                    <link key={`preload-${index}`} rel="preload" as="image" href={slide.image} />
+                ))}
+            </div>
+            
             <div className="fixed -z-100 w-full h-screen max-h-screen">
                 <div className="absolute inset-0 w-full h-full">
                     {/* Carousel */}
@@ -97,6 +138,7 @@ function Carousel() {
                                 <img 
                                     src={slide.image} 
                                     alt={`Slide ${index + 1}`} 
+                                    loading={index === 0 ? 'eager' : 'lazy'}
                                     className="object-cover w-full h-full"
                                 />
                                 
