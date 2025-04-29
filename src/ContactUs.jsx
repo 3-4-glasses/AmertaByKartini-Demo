@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import qrcode from './assets/wa_qrcode.png';
+import qrcode from './assets/qr_code_dummy.png';
 
 function ContactUs() {
     const [activeTab, setActiveTab] = useState('contact');
@@ -38,8 +38,8 @@ function ContactUs() {
     }, [formData]);
 
   const openWhatsApp = () => {
-    const phone = "6287786576543"; // Without + prefix
-    const message = "Halo, saya ingin konsultasi untuk penyusunan acara!";
+    const phone = "6281357734540"; // Without + prefix
+    const message = "I want a personalized website!";
     window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}&app_absent=0`, "_blank");
   };
   
@@ -48,12 +48,12 @@ function ContactUs() {
       navigator.share({
         title: 'Contact Us',
         text: 'Contact us on WhatsApp',
-        url: 'https://qr.me-qr.com/yAycvgUg',
+        url: 'https://qr.me-qr.com/AOHK4M9e',
       })
         .catch((error) => console.error('Error sharing:', error));
     } else {
-      const message = encodeURIComponent('Halo, saya ingin konsultasi untuk penyusunan acara!');
-      window.open(`https://api.whatsapp.com/send?phone=+6287786576543&text=${message}`, '_blank');
+      const message = encodeURIComponent('I want a personalized website!');
+      window.open(`https://api.whatsapp.com/send?phone=+6281357734540&text=${message}`, '_blank');
     }
   }
 
