@@ -44,7 +44,7 @@ app.post("/send-email", upload.array("attachments"), async (req, res) => {
         const mailOptions = {
             from: process.env.EMAIL,
             to: process.env.EMAIL, // Recipient email
-            subject: "Email notification from website", // Edit here im nto cretive
+            subject: "Email notification from website",
             text: message,
             replyTo: email,
             attachments
