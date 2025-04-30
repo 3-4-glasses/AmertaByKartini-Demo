@@ -1,40 +1,42 @@
 import nodemailer from "nodemailer";
 import Busboy from "busboy";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 export const handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
+      headers: { "Access-Control-Allow-Origin": "*" },
       body: "Method Not Allowed",
     };
   }
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const busboy = Busboy({ headers: event.headers });
     const fields = {};
     const attachments = [];
 
     busboy.on("file", (fieldname, file, fileInfo) => {
-      // Extract filename and mimetype from fileInfo
       const { filename, mimeType } = fileInfo;
       let buffer = Buffer.alloc(0);
 
-      // Collect the file data
       file.on("data", (data) => {
+        if (buffer.length + data.length > 5 * 1024 * 1024) {
+          file.destroy(new Error("File too large (max 5MB)"));
+          return;
+        }
         buffer = Buffer.concat([buffer, data]);
       });
 
       file.on("end", () => {
-        // Correctly structure the attachment for nodemailer
         attachments.push({
-          filename: filename,
+          filename,
           content: buffer,
-          contentType: mimeType, // Add the correct MIME type
-          encoding: 'base64'
+          contentType: mimeType,
         });
+      });
+
+      file.on("error", (err) => {
+        console.error("File error:", err);
       });
     });
 
@@ -43,18 +45,11 @@ export const handler = async (event) => {
     });
 
     busboy.on("finish", async () => {
-      const { email, message } = fields;
-
-      if (!email || !message) {
-        return resolve({
-          statusCode: 400,
-          body: JSON.stringify({ error: "All fields are required" }),
-        });
-      }
-
       try {
         const transporter = nodemailer.createTransport({
-          service: "gmail",
+          host: "smtp.gmail.com",
+          port: 465,
+          secure: true,
           auth: {
             user: process.env.EMAIL,
             pass: process.env.EMAIL_PASS,
@@ -64,39 +59,33 @@ export const handler = async (event) => {
         const mailOptions = {
           from: process.env.EMAIL,
           to: process.env.EMAIL,
-          subject: "Email notification from website",
-          text: message,
-          replyTo: email,
-          attachments: attachments, // Pass the correctly structured attachments
+          subject: "New message from website",
+          text: `From: ${fields.email}\n\n${fields.message}`,
+          replyTo: fields.email,
+          attachments,
         };
 
-        console.log("Sending email with attachments:", 
-          attachments.map(a => ({ filename: a.filename, size: a.content.length })));
-
-        const info = await transporter.sendMail(mailOptions);
-        console.log("Email sent:", info);
-
-        return resolve({
+        await transporter.sendMail(mailOptions);
+        
+        resolve({
           statusCode: 200,
-          body: JSON.stringify({ success: true, message: "Email sent successfully!" }),
+          headers: { "Access-Control-Allow-Origin": "*" },
+          body: JSON.stringify({ message: "Email sent!" }),
         });
       } catch (err) {
-        console.error("Error sending email:", err);
-        return resolve({
+        console.error("Error:", err);
+        resolve({
           statusCode: 500,
-          body: JSON.stringify({ error: "Failed to send email", details: err.message }),
+          headers: { "Access-Control-Allow-Origin": "*" },
+          body: JSON.stringify({ error: err.message }),
         });
       }
     });
 
-    // Handle base64 encoded body or regular body
-    let bodyData;
-    if (event.isBase64Encoded) {
-      bodyData = Buffer.from(event.body, "base64");
-    } else {
-      bodyData = Buffer.from(event.body);
-    }
-    
-    busboy.end(bodyData);
+    busboy.end(
+      event.isBase64Encoded
+        ? Buffer.from(event.body, "base64")
+        : Buffer.from(event.body)
+    );
   });
 };

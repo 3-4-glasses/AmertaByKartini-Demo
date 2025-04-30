@@ -72,7 +72,7 @@ function ContactUs() {
     );
 
     try {
-      const response = await fetch("http://localhost:8888/send-email", {
+      const response = await fetch("/.netlify/functions/sendEmail", {
         method: "POST",
         body: httpFormData,
       });
