@@ -1,0 +1,9 @@
+[build]
+  functions = "netlify/functions"
+  publish = "dist" # or your frontend build folder
+
+[[redirects]]
+  from = "/send-email"
+  to = "/.netlify/functions/sendEmail"
+  method = "POST"
+  status = 200
